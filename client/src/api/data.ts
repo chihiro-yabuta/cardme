@@ -4,21 +4,45 @@ export interface User {
 	ReposNum: number;
 }
 
-export const defaultUser: User = {
-	Name: 'Loading...',
-	Followers: -1,
-	ReposNum: -1,
+export interface container {
+	children?: JSX.Element | JSX.Element[],
+	width: number;
+	height: number;
 }
 
-export interface fontData {
-	name: string;
-	url: string;
+interface base {
+	x?: number;
+	y?: number;
+	className? :string;
 }
 
-const baseUrl = 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/';
-export const fonts = {
-	roboto: {
-		name: 'Roboto',
-		url: baseUrl+'Roboto/Roboto-Regular.ttf',
-	},
+export interface outer extends container, base {
 }
+
+export interface rect extends outer {
+	rx?: number;
+	ry?: number;
+}
+
+export interface circle extends outer {
+	r: number;
+}
+
+export interface text extends base {
+	children: string;
+}
+
+export interface line extends base {
+	x2?: number;
+	y2?: number;
+}
+
+// transform
+// rotate
+// scale
+// translate
+
+// animation
+// kayframes
+// delay
+// duration

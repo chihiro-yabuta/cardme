@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { store } from '../../redux';
 import axios from 'axios';
-import { User, defaultUser } from '../../api/data';
+import { User } from '../../api/data';
+const defaultUser: User = {
+	Name: 'Loading...',
+	Followers: -1,
+	ReposNum: -1,
+}
 
 export const Result = () => {
   const target = (s: string) => `http://localhost:8080/?name=${s}`;

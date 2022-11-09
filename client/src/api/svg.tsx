@@ -1,18 +1,31 @@
 import React from 'react';
-import satori from 'satori';
-import { fontData } from './data';
+import { container, outer, rect, circle, text, line } from './data';
+import { css } from './css';
 
-export const setSvg = async (f: fontData, el: React.ReactNode, w: number, h: number, set: Function) => {
-	const fontData = await fetch(f.url).then(res => res.arrayBuffer());
-  await satori(el,{
-      width: w, height: h, fonts: [
-        {
-          name: f.name,
-          data: fontData,
-          weight: 400,
-          style: 'normal',
-        },
-      ],
-    },
-  ).then(res => set(<div dangerouslySetInnerHTML={{__html:res}} />));
+export const Container = (props: container) => {
+  return <svg
+    xmlns='http://www.w3.org/2000/svg'
+    viewBox={`0 0 ${props.width} ${props.height}`}
+    {...props}
+  > {css} {props.children} </svg>
+}
+
+export const Group = (props: outer) => {
+  return <g {...props} />
+}
+
+export const Rect = (props: rect) => {
+    return <rect {...props} />
+}
+
+export const Circle = (props: circle) => {
+    return <circle {...props} />
+}
+
+export const Text = (props: text) => {
+    return <text {...props} />
+}
+
+export const Line = (props: line) => {
+    return <line {...props} />
 }
