@@ -9,3 +9,16 @@ export const defaultUser: User = {
 	Followers: -1,
 	ReposNum: -1,
 }
+
+export interface fontData {
+	name: string;
+	url: string;
+}
+
+const baseUrl = 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/';
+export const fonts = {
+	roboto: {
+		name: 'Roboto',
+		url: baseUrl+'Roboto/Roboto-Regular.ttf',
+	},
+}
