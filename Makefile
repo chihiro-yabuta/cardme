@@ -1,4 +1,4 @@
-.PHONY: _down, _clean, _client, _server
+.PHONY: _down, _clean, _build, _client, _server
 
 default:
 	docker compose up -d
@@ -12,9 +12,13 @@ _clean:
 	cd client \
 		&& rm -f -R node_modules package-lock.json
 
-_client:
-	cd client && npm install && npm run start
-_server:
+_build:
+	code --install-extension ms-vscode-remote.remote-containers
+	code --install-extension ms-azuretools.vscode-docker
+	code --install-extension golang.go
+	code --install-extension dbaeumer.vscode-eslint
+	code --install-extension shardulm94.trailing-spaces
+	cd client && npm install
 	cd server \
 		&& rm -f -R go.mod go.sum \
 		&& go mod init go \
@@ -22,5 +26,8 @@ _server:
 		&& go get github.com/google/go-github/v48 \
 		&& go get github.com/google/go-querystring \
 		&& go get github.com/jinzhu/copier \
-		&& go get github.com/gin-contrib/cors \
-		&& go run main.go
+		&& go get github.com/gin-contrib/cors
+_client:
+	cd client && npm run start
+_server:
+	cd server && go run main.go
