@@ -5,7 +5,7 @@ export interface User {
 }
 
 export interface container {
-	children?: JSX.Element | JSX.Element[],
+	children?: JSX.Element | JSX.Element[];
 	width: number;
 	height: number;
 }
@@ -33,16 +33,6 @@ export interface text extends base {
 }
 
 export interface line extends base {
-	x2?: number;
-	y2?: number;
+	x2: number;
+	y2: number;
 }
-
-// transform
-// rotate
-// scale
-// translate
-
-// animation
-// kayframes
-// delay
-// duration

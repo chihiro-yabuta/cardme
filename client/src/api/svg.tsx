@@ -1,13 +1,12 @@
 import React from 'react';
 import { container, outer, rect, circle, text, line } from './data';
-import { css } from './css';
 
 export const Container = (props: container) => {
   return <svg
     xmlns='http://www.w3.org/2000/svg'
     viewBox={`0 0 ${props.width} ${props.height}`}
     {...props}
-  > {css} {props.children} </svg>
+  />
 }
 
 export const Group = (props: outer) => {
