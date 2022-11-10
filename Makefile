@@ -13,11 +13,6 @@ _clean:
 		&& rm -f -R node_modules package-lock.json
 
 _build:
-	code --install-extension ms-vscode-remote.remote-containers
-	code --install-extension ms-azuretools.vscode-docker
-	code --install-extension golang.go
-	code --install-extension dbaeumer.vscode-eslint
-	code --install-extension shardulm94.trailing-spaces
 	cd client && npm install
 	cd server \
 		&& rm -f -R go.mod go.sum \
