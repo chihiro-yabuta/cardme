@@ -9,7 +9,7 @@ const defaultUser: User = {
 }
 
 export const Result = () => {
-  const target = (s: string) => `http://localhost:8080/?name=${s}`;
+  const target = (s: string) => `http://${location.hostname}:8080/?name=${s}`;
   const getData = async (s: string) => {
     setData(defaultUser);
     await axios.get<User>(target(s)).then((e) => {

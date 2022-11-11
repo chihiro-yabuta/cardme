@@ -1,4 +1,4 @@
-.PHONY: _down, _clean, _build, _client, _server
+.PHONY: _down, _clean, _build, _run, _client, _server
 
 default:
 	docker compose up -d
@@ -22,7 +22,10 @@ _build:
 		&& go get github.com/google/go-querystring \
 		&& go get github.com/jinzhu/copier \
 		&& go get github.com/gin-contrib/cors
+_run:
+	cd server && go run main.go &
+	cd client && npm run open &
 _client:
-	cd client && npm run start
+	cd client && npm run open
 _server:
 	cd server && go run main.go

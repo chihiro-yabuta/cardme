@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# node, go
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+. ~/.nvm/nvm.sh
+nvm install v17.6.0
+wget https://golang.org/dl/go1.19.3.linux-amd64.tar.gz
+sudo tar -C /usr/local -xzf go1.19.3.linux-amd64.tar.gz
+echo "export PATH=/usr/local/go/bin:$PATH" >> .bash_profile
+source ~/.bash_profile
