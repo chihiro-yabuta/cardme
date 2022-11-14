@@ -30,4 +30,4 @@ workflows:
                     - build
                 filters:
                     branches:
-                        only: dev-server
+                        only: stg
