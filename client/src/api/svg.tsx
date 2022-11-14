@@ -1,5 +1,4 @@
 import React from 'react';
-import { container, outer, rect, circle, text, line } from './data';
 
 export const Container = (props: container) => {
   return <svg
@@ -27,4 +26,37 @@ export const Text = (props: text) => {
 
 export const Line = (props: line) => {
     return <line {...props} />
+}
+
+interface container {
+	children?: JSX.Element | JSX.Element[];
+	width: number;
+	height: number;
+}
+
+interface base {
+	x?: number;
+	y?: number;
+	className? :string;
+}
+
+interface outer extends container, base {
+}
+
+interface rect extends outer {
+	rx?: number;
+	ry?: number;
+}
+
+interface circle extends outer {
+	r: number;
+}
+
+interface text extends base {
+	children: string;
+}
+
+interface line extends base {
+	x2: number;
+	y2: number;
 }

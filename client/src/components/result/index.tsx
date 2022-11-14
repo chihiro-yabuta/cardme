@@ -5,7 +5,8 @@ import { User } from '../../api/data';
 const defaultUser: User = {
 	Name: 'Loading...',
 	Followers: -1,
-	ReposNum: -1,
+	PublicRepos: -1,
+  StarredURL: 'Loading...',
 }
 
 export const Result = () => {
@@ -24,7 +25,9 @@ export const Result = () => {
     <>
       <p>{'name: ' + v.Name}</p>
       <p>{'followers: ' + v.Followers}</p>
-      <p>{'repos num: ' + v.ReposNum}</p>
+      <p>{'repos num: ' + v.PublicRepos}</p>
+      <p>{'repos url: ' + v.ReposURL}</p>
+      <p>{'starred url: ' + v.StarredURL}</p>
       <button
         children={'update data'}
         onClick={ () => { getData(store.getState().name) } }

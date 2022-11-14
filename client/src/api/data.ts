@@ -1,38 +1,58 @@
 export interface User {
-	Name: string;
-	Followers: number;
-	ReposNum: number;
+	Login?                   :string;
+	ID?                      :number;
+	NodeID?                  :string;
+	AvatarURL?               :string;
+	HTMLURL?                 :string;
+	GravatarID?              :string;
+	Name?                    :string;
+	Company?                 :string;
+	Blog?                    :string;
+	Location?                :string;
+	Email?                   :string;
+	Hireable?                :boolean;
+	Bio?                     :string;
+	TwitterUsername?         :string;
+	PublicRepos?             :number;
+	PublicGists?             :number;
+	Followers?               :number;
+	Following?               :number;
+	CreatedAt?               :string;
+	UpdatedAt?               :string;
+	SuspendedAt?             :string;
+	Type?                    :string;
+	SiteAdmin?               :boolean;
+	TotalPrivateRepos?       :number;
+	OwnedPrivateRepos?       :number;
+	PrivateGists?            :number;
+	DiskUsage?               :number;
+	Collaborators?           :number;
+	TwoFactorAuthentication? :boolean;
+	Plan?                    :Plan;
+	LdapDn?                  :string;
+
+	URL?                     :string;
+	EventsURL?               :string;
+	FollowingURL?            :string;
+	FollowersURL?            :string;
+	GistsURL?                :string;
+	OrganizationsURL?        :string;
+	ReceivedEventsURL?       :string;
+	ReposURL?                :string;
+	StarredURL?              :string;
+	SubscriptionsURL?        :string;
+
+  TextMatches?             :null;
+
+	Permissions?             :Object;
+	RoleName?                :string;
 }
 
-export interface container {
-	children?: JSX.Element | JSX.Element[];
-	width: number;
-	height: number;
-}
-
-interface base {
-	x?: number;
-	y?: number;
-	className? :string;
-}
-
-export interface outer extends container, base {
-}
-
-export interface rect extends outer {
-	rx?: number;
-	ry?: number;
-}
-
-export interface circle extends outer {
-	r: number;
-}
-
-export interface text extends base {
-	children: string;
-}
-
-export interface line extends base {
-	x2: number;
-	y2: number;
+interface Plan {
+	Name          :string;
+	Space         :number;
+	Collaborators :number;
+	PrivateRepos  :number;
+	FilledSeats   :number;
+	Seats         :number;
 }

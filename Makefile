@@ -1,7 +1,7 @@
 .PHONY: _up, _down, _clean, _test, _run, _build, _kill, _client, _server
 
 default:
-	sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 3000
+	-sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 3000
 	make _client && make _server
 _up:
 	docker compose up -d
