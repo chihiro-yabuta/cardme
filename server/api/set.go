@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"strings"
 	"compress/flate"
+	"encoding/base64"
 	"github.com/google/go-github/v48/github"
 	"github.com/jinzhu/copier"
 )
@@ -67,13 +68,15 @@ func (s *Svg) Encode(element string) {
 	w, _ := flate.NewWriter(&enc, flate.BestCompression)
 	w.Write([]byte(element))
 	w.Close()
-	s.EncSvg = enc.Bytes()
+	base := base64.StdEncoding.EncodeToString(enc.Bytes())
+	s.EncSvg = base
 }
 
 func (s *Svg) Decode(element string) {
-	// var dec bytes.Buffer
-	// r := flate.NewReader(bytes.NewReader(element))
-	// dec.ReadFrom(r)
-	// r.Close()
-	s.DecSvg = "hoge"
+	base, _ := base64.StdEncoding.DecodeString(element)
+	var dec bytes.Buffer
+	r := flate.NewReader(bytes.NewReader(base))
+	dec.ReadFrom(r)
+	r.Close()
+	s.DecSvg = dec.String()
 }

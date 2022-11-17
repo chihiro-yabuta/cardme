@@ -61,6 +61,6 @@ type User struct {
 }
 
 type Svg struct {
-	EncSvg []byte
+	EncSvg string
 	DecSvg string
 }
