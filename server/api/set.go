@@ -1,13 +1,15 @@
 package api
 
 import (
+	"bytes"
 	"strings"
+	"compress/flate"
 	"github.com/google/go-github/v48/github"
 	"github.com/jinzhu/copier"
 )
 
 func rm (s string) string { return strings.Split(s, "{")[0] }
-func (u *User) SetData(uResp *github.User) {
+func (u *User) SetUser(uResp *github.User) {
 	uc := User {
 		Login                   :rm(uResp.GetLogin()),
 		ID                      :uResp.GetID(),
@@ -58,4 +60,20 @@ func (u *User) SetData(uResp *github.User) {
 		RoleName                :rm(uResp.GetRoleName()),
 	}
 	copier.Copy(&u, &uc)
+}
+
+func (s *Svg) Encode(element string) {
+	var enc bytes.Buffer
+	w, _ := flate.NewWriter(&enc, flate.BestCompression)
+	w.Write([]byte(element))
+	w.Close()
+	s.EncSvg = enc.Bytes()
+}
+
+func (s *Svg) Decode(element string) {
+	// var dec bytes.Buffer
+	// r := flate.NewReader(bytes.NewReader(element))
+	// dec.ReadFrom(r)
+	// r.Close()
+	s.DecSvg = "hoge"
 }

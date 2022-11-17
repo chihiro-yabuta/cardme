@@ -4,6 +4,12 @@ import (
 	"github.com/google/go-github/v48/github"
 )
 
+type Data struct {
+	User  User
+	Svg   Svg
+	// Repos Repos
+}
+
 type User struct {
 	Login                   string
 	ID                      int64
@@ -52,4 +58,9 @@ type User struct {
 
 	Permissions             map[string]bool
 	RoleName                string
+}
+
+type Svg struct {
+	EncSvg []byte
+	DecSvg string
 }

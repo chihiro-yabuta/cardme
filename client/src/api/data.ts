@@ -1,4 +1,10 @@
-export interface User {
+export interface Data {
+	User?  :User;
+	Svg?   :Svg;
+	// Repos? :[]Repos;
+}
+
+interface User {
 	Login?                   :string;
 	ID?                      :number;
 	NodeID?                  :string;
@@ -55,4 +61,9 @@ interface Plan {
 	PrivateRepos  :number;
 	FilledSeats   :number;
 	Seats         :number;
+}
+
+interface Svg {
+	EncSvg? :string;
+	DecSvg? :string;
 }

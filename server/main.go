@@ -7,10 +7,9 @@ import (
 )
 
 func main() {
-	user := new(api.User)
-
+	d := new(api.Data)
 	route := gin.Default()
 	route.Use(cors.Default())
-	route.GET("/", user.GetGitApi)
+	route.GET("/", d.Get)
 	route.Run()
 }
