@@ -2,6 +2,7 @@ package api
 
 import (
 	"context"
+	"strings"
 	"github.com/google/go-github/v48/github"
 	"github.com/gin-gonic/gin"
 )
@@ -20,8 +21,8 @@ func (d *Data) GetData(c *gin.Context) {
 }
 
 func (d *Data) GetSvg(c *gin.Context) {
-	svg := c.DefaultQuery("raw", "")
+	svg := strings.ReplaceAll(c.DefaultQuery("raw", ""),  " ", "+")
 	d.Svg.Encode(svg)
-	src := c.DefaultQuery("src", "")
+	src := strings.ReplaceAll(c.DefaultQuery("src", ""),  " ", "+")
 	d.Svg.Decode(src)
 }

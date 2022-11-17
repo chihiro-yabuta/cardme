@@ -42,18 +42,18 @@ export const Canvas = () => {
 
   const getData = async () => {
     setData(defaultData);
-    await axios.get<Data>(raw(base)).then((raw) => {
-      getSrc(raw.data.Svg.EncSvg);
-    });
-    const getSrc = async (s :string) => await axios.get<Data>(src(s)).then((src) => {
+    const getSrc = async (r: string, s :string) => await axios.get<Data>(src(r, s)).then((src) => {
       setData(src.data);
+    });
+    await axios.get<Data>(raw(base)).then((raw) => {
+      getSrc(base, raw.data.Svg.EncSvg);
     });
   };
 
   const [v, setData] = useState(defaultData);
   useEffect(() => { getData() }, []);
   const raw = (s: string) => `http://${location.hostname}:8080/?raw=${s}`;
-  const src = (s: string) => `http://${location.hostname}:8080/?src=${s}`;
+  const src = (r: string, s: string) => `http://${location.hostname}:8080/?raw=${r}&src=${s}`;
   return (
     <>
       {svg}
