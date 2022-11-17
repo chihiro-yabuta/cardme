@@ -8,10 +8,6 @@ const defaultData: Data = {
     Followers: -1,
     PublicRepos: -1,
     StarredURL: 'Loading...',
-  },
-  Svg : {
-    EncSvg: 'Loading...',
-    DecSvg: 'Loading...',
   }
 }
 
@@ -34,8 +30,6 @@ export const Result = () => {
       <p>{'repos num: ' + v.User.PublicRepos}</p>
       <p>{'repos url: ' + v.User.ReposURL}</p>
       <p>{'starred url: ' + v.User.StarredURL}</p>
-      <p>{'encode: ' + v.Svg.EncSvg}</p>
-      <p>{'decode: ' + v.Svg.DecSvg}</p>
       <button
         children={'update data'}
         onClick={ () => { getData(store.getState().name) } }
