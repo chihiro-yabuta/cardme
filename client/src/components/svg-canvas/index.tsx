@@ -32,8 +32,7 @@ const styles = <style>{`
 
 export const Canvas = () => {
   const svg = (
-    <Container width={200} height={100}>
-      {styles}
+    <Container width={200} height={100} style={styles}>
       <Rect width={200} height={100} rx={10} ry={10} className='rect' />
       <Text x={10} y={30} children='Hello World' className='hello' />
     </Container>
@@ -54,16 +53,15 @@ export const Canvas = () => {
   useEffect(() => { getData() }, []);
   const raw = (s: string) => `http://${location.hostname}:8080/?raw=${s}`;
   const src = (r: string, s: string) => `http://${location.hostname}:8080/?raw=${r}&src=${s}`;
+  const url = `http://${location.hostname}:8080/?mode=html&src=${v.Svg.EncSvg}`;
   return (
     <>
       {svg}
       <p>{ReactDOMServer.renderToString(svg)}</p>
       <p>{'encode: ' + v.Svg.EncSvg}</p>
       <p>{'decode: ' + v.Svg.DecSvg}</p>
-      <button
-        children={'update data'}
-        onClick={ () => { getData() } }
-      />
+      <a href={url} target="_blank">{url}</a>
+      <iframe width={200} height={100} frameBorder="0" src={url} />
     </>
   );
 }

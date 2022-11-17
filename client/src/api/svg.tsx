@@ -4,8 +4,9 @@ export const Container = (props: container) => {
   return <svg
     xmlns='http://www.w3.org/2000/svg'
     viewBox={`0 0 ${props.width} ${props.height}`}
-    {...props}
-  />
+    width={props.width}
+		height={props.height}
+  >{props.style}{props.children}</svg>
 }
 
 export const Group = (props: outer) => {
@@ -28,19 +29,23 @@ export const Line = (props: line) => {
     return <line {...props} />
 }
 
-interface container {
+interface parent {
 	children?: JSX.Element | JSX.Element[];
 	width: number;
 	height: number;
 }
 
-interface base {
+interface child {
 	x?: number;
 	y?: number;
 	className? :string;
 }
 
-interface outer extends container, base {
+interface container extends parent {
+	style: JSX.Element;
+}
+
+interface outer extends parent, child {
 }
 
 interface rect extends outer {
@@ -52,11 +57,11 @@ interface circle extends outer {
 	r: number;
 }
 
-interface text extends base {
+interface text extends child {
 	children: string;
 }
 
-interface line extends base {
+interface line extends child {
 	x2: number;
 	y2: number;
 }
