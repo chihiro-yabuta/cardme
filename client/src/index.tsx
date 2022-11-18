@@ -1,12 +1,12 @@
 import React from 'react';
 import { TextArea } from './components/textarea';
-import { Canvas } from './components/svg-canvas';
+import { Result } from './components/result';
 
 export const App = () => {
   return (
     <>
       <TextArea />
-      <Canvas />
+      <Result />
     </>
   );
 }

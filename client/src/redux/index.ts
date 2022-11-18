@@ -4,6 +4,7 @@ const initialState = {
   name: '',
   jsx: '',
   css: '',
+  base64: '',
 };
 
 export const slice = createSlice({
@@ -18,6 +19,9 @@ export const slice = createSlice({
     },
     sendCSS(state, action: PayloadAction<string>) {
       state.css = action.payload;
+    },
+    sendBase64(state, action: PayloadAction<string>) {
+      state.base64 = action.payload;
     },
   },
 });
