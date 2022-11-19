@@ -10,9 +10,9 @@ export const Result = () => {
 
   const getData = async () => {
     const base = store.getState().base64;
-    setApiURL('push button');
-    setComp(<p>push button</p>);
-    await axios.get<Data>(url(`raw=${base}`)).then((src) => {
+    setApiURL('Loading...');
+    setComp(<p>Loading...</p>);
+    await axios.get<Data>(url(`name=${store.getState().name}&raw=${base}`)).then((src) => {
       setApiURL(url(`mode=html&src=${src.data.Svg.EncSvg}`));
       setComp(<iframe width={200} height={100} frameBorder="0"
       src={url(`mode=html&src=${src.data.Svg.EncSvg}`)} />);

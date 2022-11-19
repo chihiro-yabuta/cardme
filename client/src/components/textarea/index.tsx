@@ -12,8 +12,8 @@ export const TextArea = () => {
   const [jsx, setJSX] = useState(defaultJSX);
   const [css, setCSS] = useState(defaultCSS);
   const dispatch = useDispatch();
-  const { sendName, sendJSX, sendCSS } = slice.actions;
-  useEffect(()=>{dispatch(sendName(name));dispatch(sendJSX(jsx));dispatch(sendCSS(css));},[]);
+  const { sendName } = slice.actions;
+  useEffect(() => { dispatch(sendName(name)); }, []);
 
   return (
     <>
@@ -31,7 +31,6 @@ export const TextArea = () => {
         theme={vscodeDark}
         extensions={[javascript({ jsx: true })]}
         onChange={(value) => {
-          dispatch(sendJSX(value));
           setJSX(value);
         }}
       />
@@ -41,11 +40,10 @@ export const TextArea = () => {
         theme={vscodeDark}
         extensions={[langCSS()]}
         onChange={(value) => {
-          dispatch(sendCSS(value));
           setCSS(value);
         }}
       />
-      <SVG />
+      <SVG name={name} css={css} jsx={jsx}/>
     </>
   );
 }

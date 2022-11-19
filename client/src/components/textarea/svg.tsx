@@ -1,12 +1,12 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import ReactDOMServer from 'react-dom/server';
 import { Buffer } from 'buffer';
-import { slice, store } from '../../redux';
+import { slice } from '../../redux';
 import { Convert } from '../../api/convert';
 
-export const SVG = () => {
-  const Canvas = Convert(store.getState().css, store.getState().jsx);
+export const SVG = (props: { name: string, css: string, jsx: string }) => {
+  const Canvas = Convert(props.name, props.css, props.jsx);
 
   const dispatch = useDispatch();
   const { sendBase64 } = slice.actions;
