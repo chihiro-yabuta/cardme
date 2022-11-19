@@ -1,21 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import ReactDOMServer from 'react-dom/server';
-import HtmlReactParser from 'html-react-parser';
 import { Buffer } from 'buffer';
-import { Container, Group, Rect, Circle, Text, Line } from '../../api/svg';
 import { slice, store } from '../../redux';
+import { Convert } from '../../api/convert';
 
 export const SVG = () => {
-  const css = `<style>${store.getState().css}</style>`;
-  const jsx = store.getState().jsx;
+  const Canvas = Convert(store.getState().css, store.getState().jsx);
 
   const dispatch = useDispatch();
   const { sendBase64 } = slice.actions;
-  const base = Buffer.from(ReactDOMServer.renderToString(<p>hello</p>)).toString('base64');
+  const base = Buffer.from(ReactDOMServer.renderToString(Canvas)).toString('base64');
   useEffect(() => { dispatch(sendBase64(base)); }, []);
 
-  return <p>hello</p>;
+  return Canvas;
 }
 
 export const defaultJSX =

@@ -8,7 +8,7 @@ const initialState = {
 };
 
 export const slice = createSlice({
-  name: 'name',
+  name: 'slice',
   initialState,
   reducers: {
     sendName(state, action: PayloadAction<string>) {
