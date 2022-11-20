@@ -14,7 +14,7 @@ export const Result = () => {
     setComp(<p>Loading...</p>);
     await axios.get<Data>(url(`name=${store.getState().name}&raw=${base}`)).then((src) => {
       setApiURL(url(`mode=html&src=${src.data.Svg.EncSvg}`));
-      setComp(<iframe width={200} height={100} frameBorder="0"
+      setComp(<iframe width={200} height={100} frameBorder='0'
       src={url(`mode=html&src=${src.data.Svg.EncSvg}`)} />);
     });
   };
@@ -26,7 +26,7 @@ export const Result = () => {
         onClick={ () => { getData() } }
       />
       {comp}
-      <a href={apiURL} target="_blank">{apiURL}</a>
+      <a href={apiURL} target='_blank'>{apiURL}</a>
     </>
   );
 }

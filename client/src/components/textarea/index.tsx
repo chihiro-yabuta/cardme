@@ -27,7 +27,7 @@ export const TextArea = () => {
       />
       <CodeMirror
         value={jsx}
-        width="75%"
+        width='75%'
         theme={vscodeDark}
         extensions={[javascript({ jsx: true })]}
         onChange={(value) => {
@@ -36,7 +36,7 @@ export const TextArea = () => {
       />
       <CodeMirror
         value={css}
-        width="75%"
+        width='75%'
         theme={vscodeDark}
         extensions={[langCSS()]}
         onChange={(value) => {

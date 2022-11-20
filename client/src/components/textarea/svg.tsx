@@ -19,7 +19,9 @@ export const SVG = (props: { name: string, css: string, jsx: string }) => {
 export const defaultJSX =
 `<Container width={200} height={100}>
   <Rect width={200} height={100} rx={10} ry={10} className='rect' />
-  <Text x={10} y={30} children='Hello World' className='hello' />
+  <Text x={10} y={30} className='hello'>
+    Hello World!
+  </Text>
 </Container>`;
 
 export const defaultCSS =
