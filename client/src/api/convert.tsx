@@ -2,16 +2,17 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Data } from './data';
 import { Container, Group, Rect, Circle, Text, Line } from './svg';
-const defaultData: Data = { User :{ Name: 'Loading...' } };
 
 export const Convert = (name : string, css: string, jsx: string) => {
-  const [data, setData] = useState(defaultData);
+  const [data, setData] = useState({});
   const url = `http://${location.hostname}:8080/?name=${name}`;
   const getData = async () => await axios.get<Data>(url).then((api) => {
     setData(api.data);
   });
   useEffect(() => { getData(); }, []);
-  const style = <style>{css}</style>;
+
+  const SVG: any = [];
+  let target: any = SVG;
 
   jsx.split('\n').map((l) => {
     const pos = l.search(/\S/g);
@@ -21,27 +22,44 @@ export const Convert = (name : string, css: string, jsx: string) => {
     if (isJsx) {
       const el = l.replace(/<|\/|>/g,'').split(' ').filter(e=>e!=='');
       if (isEnd) {
-        console.log(el);
+        [...Array(pos/2|0)].map(() => target = SVG[SVG.length-1].children);
       } else if (isAlone) {
-        const [tag, props] = [el[0], el.slice(1)];
-        console.log(tag, propsObj(props));
+        const [tag, props] = [el[0], propsObj(el.slice(1))];
+        target.push({ tag: tag, props: props });
       } else {
-        const [tag, props] = [el[0], el.slice(1)];
-        console.log(pos, tag, propsObj(props));
+        const [tag, props] = [el[0], propsObj(el.slice(1))];
+        target.push({ tag: tag, props: props, children: [] });
+        target = target[target.length-1].children;
       }
     } else {
-      const el = l.slice(pos);
-      console.log(el);
+      target.push(l.slice(pos));
     }
   });
-
-  return <Text children='hello world'/>
+  return recursive(SVG, css);
 }
 
-// const recursive = (props: any): JSX.Element => {
-// }
+const recursive = (e, css?: string): JSX.Element => {
+  return e.map((obj) => {
+    const r = () => obj.children ? recursive(obj.children) : null;
+    switch (obj.tag) {
+      case 'Container':
+        const style = <style>{css}</style>;
+        return Container({ ...obj.props, children: r(), style });
+      case 'Group':
+        return Group({ ...obj.props, children: r() });
+      case 'Rect':
+        return Rect({ ...obj.props, children: r() });
+      case 'Circle':
+        return Circle({ ...obj.props, children: r() });
+      case 'Text':
+        return Text({ ...obj.props, children: obj.children.join() });
+      case 'Line':
+        return Line({ ...obj.props });
+    }
+  });
+}
 
-const propsObj = (l: string[]) => {
+const propsObj = (l: string[]): Object => {
   const obj = {};
   l.map((s) => {
     const [prop, el] = s.split('=');
@@ -49,10 +67,4 @@ const propsObj = (l: string[]) => {
     Object.assign(obj, { [prop]: Number(e) || String(e) });
   });
   return obj;
-}
-
-type element = {
-  tag: string,
-  props: any,
-  children: Object[] | string,
 }

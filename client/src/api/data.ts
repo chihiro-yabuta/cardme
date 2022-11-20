@@ -1,7 +1,6 @@
 export interface Data {
 	User?  :User;
 	Svg?   :Svg;
-	// Repos? :[]Repos;
 }
 
 interface User {

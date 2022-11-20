@@ -7,7 +7,6 @@ import (
 type Data struct {
 	User  User
 	Svg   Svg
-	// Repos Repos
 }
 
 type User struct {

@@ -11,7 +11,7 @@ export const SVG = (props: { name: string, css: string, jsx: string }) => {
   const dispatch = useDispatch();
   const { sendBase64 } = slice.actions;
   const base = Buffer.from(ReactDOMServer.renderToString(Canvas)).toString('base64');
-  useEffect(() => { dispatch(sendBase64(base)); }, []);
+  useEffect(() => { dispatch(sendBase64(base)); }, [Canvas]);
 
   return Canvas;
 }
