@@ -22,7 +22,8 @@ export const Convert = (name : string, css: string, jsx: string) => {
     if (isJsx) {
       const el = l.replace(/<|\/|>/g,'').split(' ').filter(e=>e!=='');
       if (isEnd) {
-        [...Array(pos/2|0)].map(() => target = SVG[SVG.length-1].children);
+        target = SVG;
+        [...Array(pos/2|0)].map(() => target = target[target.length-1].children);
       } else if (isAlone) {
         const [tag, props] = [el[0], propsObj(el.slice(1))];
         target.push({ tag: tag, props: props });
@@ -60,11 +61,15 @@ const recursive = (e, css?: string): JSX.Element => {
 }
 
 const propsObj = (l: string[]): Object => {
-  const obj = {};
+  const obj: any = {};
   l.map((s) => {
-    const [prop, el] = s.split('=');
-    const e = el.replace(/{|}|'|"/g, '');
-    Object.assign(obj, { [prop]: Number(e) || String(e) });
+    if (s.indexOf('=') === -1) {
+      obj.className = `${obj.className} ${s.replace(/'|"/g, '')}`;
+    } else {
+      const [prop, el] = s.split('=');
+      const e = el.replace(/{|}|'|"/g, '');
+      Object.assign(obj, { [prop]: Number(e) || String(e) });
+    }
   });
   return obj;
 }
