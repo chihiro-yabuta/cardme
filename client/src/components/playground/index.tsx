@@ -17,7 +17,9 @@ export const Playground = () => {
   const { sendName } = slice.actions;
   useEffect(() => { dispatch(sendName(name)); }, []);
   const code = [
-    <SVG name={name} css={css} jsx={jsx} />,
+    <div className='imgarea'>
+      <SVG name={name} css={css} jsx={jsx} />
+    </div>,
     <CodeMirror
       value={jsx}
       width='800px'
@@ -37,6 +39,14 @@ export const Playground = () => {
       }}
     />
   ];
+  const btn = ['svg', 'jsx', 'css'].map((s, i) => (
+    <button
+      className='btnelement'
+      style={{ backgroundColor: idx === i ? '#646567' : '#848587' }}
+      children={s}
+      onClick={ () => setIdx(i) }
+    />
+  ));
 
   return (
     <div className='center'>
@@ -51,18 +61,7 @@ export const Playground = () => {
         />
       </div>
       <div className='btnarea'>
-        <button
-          children='svg'
-          onClick={ () => setIdx(0) }
-        />
-        <button
-          children='jsx'
-          onClick={ () => setIdx(1) }
-        />
-        <button
-          children='css'
-          onClick={ () => setIdx(2) }
-        />
+        {btn}
       </div>
       <div className='textarea'>
         {code[idx]}

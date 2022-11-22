@@ -1,29 +1,46 @@
-div .center {
+.center {
   display: grid;
   justify-content: center;
 }
 
-div .namearea {
+.center .namearea {
   text-align: center;
 }
 
-div .btnarea {
+.center .btnarea {
   text-align: left;
+  width: 800px;
 }
 
-div .textarea {
+.center .btnarea .btnelement {
+  border: none;
+  font-size: 20px;
+  width: 75px;
+  height: 40px;
+}
+
+.center .btnarea .btnelement:hover {
+  color: #d0d0d0;
+}
+
+.center .textarea {
   font-size: 14px;
 }
 
-div .showbtnarea {
+.center .showbtnarea {
   text-align: center;
 }
 
-div .imgarea {
+.center .imgarea {
+  display: table-cell;
+  vertical-align: middle;
   text-align: center;
+  width: 800px;
+  height: 500px;
+  background: rgba(0,0,0,0.375);
 }
 
-div .urlarea {
+.center .urlarea {
   text-align: center;
   width: 1000px;
   word-break: break-all;
