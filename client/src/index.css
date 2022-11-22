@@ -3,23 +3,35 @@
   justify-content: center;
 }
 
-.center .namearea {
-  text-align: center;
-}
-
-.center .btnarea {
-  text-align: left;
+.center .optarea {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
   width: 800px;
 }
 
-.center .btnarea .btnelement {
+.center .optarea .namearea {
+  text-align: right;
+  font-size: 30px;
+}
+
+.center .optarea .namearea input {
+  border: none;
+  background-color: transparent;
+}
+
+.center .optarea .namearea input:focus {
+  outline: none;
+}
+
+.center .optarea .btnarea .btnelement {
   border: none;
   font-size: 20px;
   width: 75px;
   height: 40px;
 }
 
-.center .btnarea .btnelement:hover {
+.center .optarea .btnarea .btnelement:hover {
   color: #d0d0d0;
 }
 

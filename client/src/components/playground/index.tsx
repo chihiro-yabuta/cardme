@@ -1,5 +1,6 @@
 import '../../index.css';
 import React, { useState, useEffect } from 'react';
+import { IoRocket } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
@@ -22,7 +23,7 @@ export const Playground = () => {
     </div>,
     <CodeMirror
       value={jsx}
-      width='800px'
+      width='800'
       theme={vscodeDark}
       extensions={[javascript({ jsx: true })]}
       onChange={(value) => {
@@ -31,7 +32,7 @@ export const Playground = () => {
     />,
     <CodeMirror
       value={css}
-      width='800px'
+      width='800'
       theme={vscodeDark}
       extensions={[langCSS()]}
       onChange={(value) => {
@@ -50,18 +51,22 @@ export const Playground = () => {
 
   return (
     <div className='center'>
-      <div className='namearea'>
-        <input
-          type={'text'}
-          value={name}
-          onChange={(e) => {
-            dispatch(sendName(e.target.value));
-            setName(e.target.value);
-          }}
-        />
-      </div>
-      <div className='btnarea'>
-        {btn}
+      <div className='optarea'>
+        <div className='btnarea'>
+          {btn}
+        </div>
+        <div className='namearea'>
+          <p><IoRocket />{'Your GitHub Name'}</p>
+          <input
+            style={{ fontSize: '100%' }}
+            type={'text'}
+            value={name}
+            onChange={(e) => {
+              dispatch(sendName(e.target.value));
+              setName(e.target.value);
+            }}
+          />
+        </div>
       </div>
       <div className='textarea'>
         {code[idx]}
