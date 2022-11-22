@@ -1,0 +1,10 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+html {
+  background-color: #959698;
+  background-image:  linear-gradient(#646567 1px, transparent 1px), linear-gradient(to right, #646567 1px, #959698 1px);
+  background-size: 75px 75px;
+}

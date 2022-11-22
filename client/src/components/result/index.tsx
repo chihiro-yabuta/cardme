@@ -1,3 +1,4 @@
+import '../../index.css';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Data } from '../../api/data';
@@ -14,19 +15,25 @@ export const Result = () => {
     setComp(<p>Loading...</p>);
     await axios.get<Data>(url(`name=${store.getState().name}&raw=${base}`)).then((src) => {
       setApiURL(url(`mode=html&src=${src.data.Svg.EncSvg}`));
-      setComp(<iframe width={200} height={100} frameBorder='0'
+      setComp(<iframe width={720} height={100} frameBorder='0'
       src={url(`mode=html&src=${src.data.Svg.EncSvg}`)} />);
     });
   };
 
   return (
-    <>
-      <button
-        children={'update data'}
-        onClick={ () => { getData() } }
-      />
-      {comp}
-      <a href={apiURL} target='_blank'>{apiURL}</a>
-    </>
+    <div className='center'>
+      <div className='showbtnarea'>
+        <button
+          children={'show result'}
+          onClick={ () => getData() }
+        />
+      </div>
+      <div className='imgarea'>
+        {comp}
+      </div>
+      <div className='urlarea'>
+        <a href={apiURL} target='_blank' className='url'>{apiURL}</a>
+      </div>
+    </div>
   );
 }

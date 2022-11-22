@@ -1,0 +1,30 @@
+div .center {
+  display: grid;
+  justify-content: center;
+}
+
+div .namearea {
+  text-align: center;
+}
+
+div .btnarea {
+  text-align: left;
+}
+
+div .textarea {
+  font-size: 14px;
+}
+
+div .showbtnarea {
+  text-align: center;
+}
+
+div .imgarea {
+  text-align: center;
+}
+
+div .urlarea {
+  text-align: center;
+  width: 1000px;
+  word-break: break-all;
+}
