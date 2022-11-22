@@ -18,6 +18,9 @@
 .center .optarea .namearea input {
   border: none;
   background-color: transparent;
+  font-size: 100%;
+  text-align: right;
+  width: 500px;
 }
 
 .center .optarea .namearea input:focus {

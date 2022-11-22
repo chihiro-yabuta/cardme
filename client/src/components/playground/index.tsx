@@ -58,7 +58,6 @@ export const Playground = () => {
         <div className='namearea'>
           <p><IoRocket />{'Your GitHub Name'}</p>
           <input
-            style={{ fontSize: '100%' }}
             type={'text'}
             value={name}
             onChange={(e) => {
