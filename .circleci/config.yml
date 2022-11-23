@@ -30,4 +30,4 @@ workflows:
                     - build
                 filters:
                     branches:
-                        only: stg
+                        only: main
