@@ -1,16 +1,7 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Data } from './data';
+import React from 'react';
 import { Container, Group, Rect, Circle, Text, Line } from './svg';
 
-export const Convert = (name : string, css: string, jsx: string) => {
-  const [data, setData] = useState({});
-  const url = `http://${location.hostname}:8080/?name=${name}`;
-  const getData = async () => await axios.get<Data>(url).then((api) => {
-    setData(api.data);
-  });
-  useEffect(() => { getData(); }, []);
-
+export const Convert = (css: string, jsx: string) => {
   const SVG: any = [];
   let target: any = SVG;
 

@@ -7,7 +7,8 @@ import { javascript } from '@codemirror/lang-javascript';
 import { vscodeDark } from '@uiw/codemirror-theme-vscode';
 import { css as langCSS } from '@codemirror/lang-css';
 import { slice } from '../../redux';
-import { SVG, defaultJSX, defaultCSS, options } from './svg';
+import { defaultJSX, defaultCSS, options, user } from '../example';
+import { SVG } from './svg';
 
 export const Playground = () => {
   const [name, setName] = useState('Google');
@@ -18,9 +19,7 @@ export const Playground = () => {
   const { sendName } = slice.actions;
   useEffect(() => { dispatch(sendName(name)); }, []);
   const code = [
-    <div className='imgarea'>
-      <SVG name={name} css={css} jsx={jsx} />
-    </div>,
+    <SVG name={name} css={css} jsx={jsx} />,
     <CodeMirror
       value={jsx}
       width='800'
@@ -45,9 +44,16 @@ export const Playground = () => {
       theme={vscodeDark}
       extensions={[javascript({ jsx: true })]}
       readOnly
+    />,
+    <CodeMirror
+      value={user}
+      width='800'
+      theme={vscodeDark}
+      extensions={[javascript()]}
+      readOnly
     />
   ];
-  const btn = ['svg', 'jsx', 'css', 'opt'].map((s, i) => (
+  const btn = ['svg', 'jsx', 'css', 'opt', 'usr'].map((s, i) => (
     <button
       className='btnelement'
       style={{ backgroundColor: idx === i ? '#646567' : '#848587' }}
