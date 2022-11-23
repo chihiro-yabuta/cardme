@@ -79,6 +79,7 @@ export const defaultCSS =
   animation: buttomin 1.2s both 1.5s;
 }
 .name {
+  font-size: 50px;
   animation: rightin 1.5s both 2s;
 }`;
 
