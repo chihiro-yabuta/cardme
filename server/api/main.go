@@ -1,7 +1,6 @@
 package api
 
 import (
-	"fmt"
 	"context"
 	"strings"
 	"github.com/google/go-github/v48/github"
@@ -13,9 +12,8 @@ func (d *Data) Get(c *gin.Context) {
 	d.GetSvg(c)
 	mode := c.DefaultQuery("mode", "")
 	if mode == "html" && d.Svg.DecSvg != "" {
-		s := "<style> * { margin: 0px; padding: 0px; }</style>"
-		html := fmt.Sprintf("<html>%s<body>%s</body></html>", s, d.Svg.DecSvg)
-		c.Writer.Write([]byte(html))
+		c.Writer.Header().Set("Content-Type", "image/svg+xml")
+		c.Writer.Write([]byte(d.Svg.DecSvg))
 	} else {
 		c.JSON(200, d)
 	}
