@@ -38,7 +38,7 @@ export const Result = () => {
           {comp}
         </div>
         <div className='urlarea'>
-          <p className='url'>{`<img src="${url(`mode=html&src=${apiURL}`)}" />`}</p>
+          <p className='url'>{`<img src="${apiURL}" />`}</p>
         </div>
       </div>
     </div>
