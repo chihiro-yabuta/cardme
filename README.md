@@ -6,7 +6,7 @@ you can show this card everywhere that can uses html.<br>
 try this app, and if you like it, plz star my repo!
 
 ### Components
-⭐: nessesary ○: option ×: can't
+⭐: necessary ○: option ×: can't
 <table>
   <tr><th>\</th><th>Container</th><th>Group</th><th>Rect</th><th>Circle</th><th>Text</th><th>Line</th></tr>
   <tr>
