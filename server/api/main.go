@@ -13,7 +13,7 @@ func (d *Data) Get(c *gin.Context) {
 	mode := c.DefaultQuery("mode", "")
 	if mode == "html" && d.Svg.DecSvg != "" {
 		c.Writer.Header().Set("Content-Type", "image/svg+xml")
-		c.Writer.Write([]byte(d.Svg.DecSvg))
+		c.Writer.Write([]byte(GitReplace(d.Svg.DecSvg)))
 	} else {
 		c.JSON(200, d)
 	}

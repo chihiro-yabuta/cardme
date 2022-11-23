@@ -17,7 +17,9 @@ export const SVG = (props: { name: string, css: string, jsx: string }) => {
   });
   useEffect(() => { getData(); }, []);
 
-  const Canvas = Convert(props.css, props.jsx);
+  let Canvas = <p style={{ fontSize: 50, color: "red" }}>Bad Grammer</p>
+  try {Canvas = Convert(props.css, props.jsx); } catch {;}
+
   const dispatch = useDispatch();
   const { sendBase64 } = slice.actions;
   let str = ReactDOMServer.renderToString(Canvas);
