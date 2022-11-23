@@ -20,7 +20,7 @@ _clean:
 _test:
 	circleci config validate
 _run:
-	make _kill
+	-make _kill
 	make _build
 
 _build:
