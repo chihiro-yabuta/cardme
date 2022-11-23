@@ -15,7 +15,7 @@ export const SVG = (props: { name: string, css: string, jsx: string }) => {
   const getData = async () => await axios.get<Data>(url).then((api) => {
     setData(api.data);
   });
-  useEffect(() => { getData(); }, []);
+  useEffect(() => { getData(); }, [props.name]);
 
   let Canvas = <p style={{ fontSize: 50, color: "red" }}>Bad Grammer</p>
   try {Canvas = Convert(props.css, props.jsx); } catch {;}
@@ -24,7 +24,7 @@ export const SVG = (props: { name: string, css: string, jsx: string }) => {
   const { sendBase64 } = slice.actions;
   let str = ReactDOMServer.renderToString(Canvas);
   const base = Buffer.from(str).toString('base64');
-  useEffect(() => { dispatch(sendBase64(base)); }, [Canvas]);
+  useEffect(() => { dispatch(sendBase64(base)); }, [props.css, props.jsx]);
 
   if (data.User) {
     userMap.map((s) => { str = str.replace(`{${s}}`, data.User[s]) });
