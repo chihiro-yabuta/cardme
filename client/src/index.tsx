@@ -1,16 +1,14 @@
 import React from 'react';
-import { TextArea } from './components/textarea';
+import { Header } from './components/header';
+import { Playground } from './components/playground';
 import { Result } from './components/result';
-import { Canvas } from './components/svg-canvas';
 
 export const App = () => {
   return (
     <>
-      <TextArea />
+      <Header />
+      <Playground />
       <Result />
-      <div>
-        <Canvas />
-      </div>
     </>
   );
 }
