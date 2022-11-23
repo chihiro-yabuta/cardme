@@ -7,7 +7,7 @@ import { javascript } from '@codemirror/lang-javascript';
 import { vscodeDark } from '@uiw/codemirror-theme-vscode';
 import { css as langCSS } from '@codemirror/lang-css';
 import { slice } from '../../redux';
-import { SVG, defaultJSX, defaultCSS } from './svg';
+import { SVG, defaultJSX, defaultCSS, options } from './svg';
 
 export const Playground = () => {
   const [name, setName] = useState('Google');
@@ -38,9 +38,16 @@ export const Playground = () => {
       onChange={(value) => {
         setCSS(value);
       }}
+    />,
+    <CodeMirror
+      value={options}
+      width='800'
+      theme={vscodeDark}
+      extensions={[javascript({ jsx: true })]}
+      readOnly
     />
   ];
-  const btn = ['svg', 'jsx', 'css'].map((s, i) => (
+  const btn = ['svg', 'jsx', 'css', 'opt'].map((s, i) => (
     <button
       className='btnelement'
       style={{ backgroundColor: idx === i ? '#646567' : '#848587' }}
@@ -56,7 +63,7 @@ export const Playground = () => {
           {btn}
         </div>
         <div className='namearea'>
-          <p><IoRocket />{'Your GitHub Name'}</p>
+          <p><IoRocket /> Your GitHub Name↓</p>
           <input
             type={'text'}
             value={name}
