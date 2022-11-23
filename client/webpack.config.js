@@ -28,8 +28,8 @@ module.exports = {
         ],
       },
       {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
       },
     ],
   },
@@ -39,6 +39,7 @@ module.exports = {
       directory: path.join(__dirname, 'public'),
     },
     port: 3000,
+    allowedHosts: 'all',
   },
 
   resolve: {
