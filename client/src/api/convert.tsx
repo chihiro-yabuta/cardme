@@ -11,7 +11,7 @@ export const Convert = (css: string, jsx: string) => {
     const isAlone = l[l.indexOf('>')-1] === '/';
     const isJsx = l[pos] === '<';
     if (isJsx) {
-      const el = l.replace(/<|\/>/g,'').split(' ').filter(e=>e!=='');
+      const el = l.replace(/<|>|\/>/g,'').split(' ').filter(e=>e!=='');
       if (isEnd) {
         target = SVG;
         [...Array(pos/2|0)].map(() => target = target[target.length-1].children);
