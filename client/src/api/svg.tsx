@@ -34,8 +34,8 @@ export const Line = (props: line) => {
 }
 
 interface parent {
-	width: number;
-	height: number;
+	width?: number;
+	height?: number;
 }
 
 interface child {
@@ -51,6 +51,7 @@ interface container extends parent {
 
 interface group extends parent {
 	children: JSX.Element | JSX.Element[];
+	className? :string;
 }
 
 interface outer extends parent, child {

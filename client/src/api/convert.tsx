@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Group, Rect, Circle, Text, Line } from './svg';
+import { Container, Group, Rect, Circle, Img, Text, Line } from './svg';
 
 export const Convert = (css: string, jsx: string) => {
   const SVG: any = [];
@@ -11,7 +11,7 @@ export const Convert = (css: string, jsx: string) => {
     const isAlone = l[l.indexOf('>')-1] === '/';
     const isJsx = l[pos] === '<';
     if (isJsx) {
-      const el = l.replace(/<|\/|>/g,'').split(' ').filter(e=>e!=='');
+      const el = l.replace(/<|\/>/g,'').split(' ').filter(e=>e!=='');
       if (isEnd) {
         target = SVG;
         [...Array(pos/2|0)].map(() => target = target[target.length-1].children);
@@ -40,9 +40,11 @@ const recursive = (e, css?: string): JSX.Element => {
       case 'Group':
         return Group({ ...obj.props, children: r() });
       case 'Rect':
-        return Rect({ ...obj.props, children: r() });
+        return Rect({ ...obj.props });
       case 'Circle':
-        return Circle({ ...obj.props, children: r() });
+        return Circle({ ...obj.props });
+      case 'Img':
+        return Img({ ...obj.props });
       case 'Text':
         return Text({ ...obj.props, children: obj.children.join() });
       case 'Line':
