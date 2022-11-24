@@ -1,5 +1,6 @@
 import '../../index.css';
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { IoRocket } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
 import CodeMirror from '@uiw/react-codemirror';
@@ -7,6 +8,7 @@ import { javascript } from '@codemirror/lang-javascript';
 import { vscodeDark } from '@uiw/codemirror-theme-vscode';
 import { css as langCSS } from '@codemirror/lang-css';
 import { slice } from '../../redux';
+import { Data } from '../../api/data';
 import { defaultJSX, defaultCSS, options, user } from '../example';
 import { SVG } from './svg';
 
@@ -15,43 +17,31 @@ export const Playground = () => {
   const [jsx, setJSX] = useState(defaultJSX);
   const [css, setCSS] = useState(defaultCSS);
   const [idx, setIdx] = useState(0);
+  const [data, setData]: [any, Function] = useState({});
+
+  const url = name !== ''
+  ? `http://${location.hostname}:8080/?name=${name}`
+  : `http://${location.hostname}:8080`;
+  const getData = async () => await axios.get<Data>(url).then((api) => {
+    setData(api.data);
+  });
+
   const dispatch = useDispatch();
-  const { sendName } = slice.actions;
-  useEffect(() => { dispatch(sendName(name)); }, []);
+  useEffect(() => { dispatch(slice.actions.sendName(name)); getData(); }, [name]);
   const code = [
-    <SVG name={name} css={css} jsx={jsx} />,
+    <SVG data={data} css={css} jsx={jsx} />,
     <CodeMirror
-      value={jsx}
-      width='800'
-      theme={vscodeDark}
-      extensions={[javascript({ jsx: true })]}
-      onChange={(value) => {
-        setJSX(value);
-      }}
-    />,
+      value={jsx} width='800' theme={vscodeDark} extensions={[javascript({ jsx: true })]}
+      onChange={ (value) => setJSX(value) } />,
     <CodeMirror
-      value={css}
-      width='800'
-      theme={vscodeDark}
-      extensions={[langCSS()]}
-      onChange={(value) => {
-        setCSS(value);
-      }}
-    />,
+      value={css} width='800' theme={vscodeDark} extensions={[langCSS()]}
+      onChange={ (value) => setCSS(value) } />,
     <CodeMirror
-      value={options}
-      width='800'
-      theme={vscodeDark}
-      extensions={[javascript({ jsx: true })]}
-      readOnly
-    />,
+      value={options} width='800' theme={vscodeDark}
+      extensions={[javascript({ jsx: true })]} readOnly />,
     <CodeMirror
-      value={user}
-      width='800'
-      theme={vscodeDark}
-      extensions={[javascript()]}
-      readOnly
-    />
+      value={user} width='800' theme={vscodeDark}
+      extensions={[javascript()]} readOnly />,
   ];
   const btn = ['svg', 'jsx', 'css', 'opt', 'usr'].map((s, i) => (
     <button
@@ -74,7 +64,6 @@ export const Playground = () => {
             type={'text'}
             value={name}
             onChange={(e) => {
-              dispatch(sendName(e.target.value));
               setName(e.target.value);
             }}
           />

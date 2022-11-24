@@ -93,7 +93,7 @@ export const options =
   >{props.style}{props.children}</svg>
 }
 
-const Group = (props: outer) => {
+const Group = (props: group) => {
   return <g {...props} />
 }
 
@@ -105,6 +105,10 @@ const Circle = (props: circle) => {
     return <circle {...props} />
 }
 
+const Img = (props: image) => {
+	return <image {...props} />
+}
+
 const Text = (props: text) => {
     return <text {...props} />
 }
@@ -114,9 +118,8 @@ const Line = (props: line) => {
 }
 
 interface parent {
-	children?: JSX.Element | JSX.Element[];
-	width: number;
-	height: number;
+	width?: number;
+	height?: number;
 }
 
 interface child {
@@ -126,10 +129,15 @@ interface child {
 }
 
 interface container extends parent {
+	children: JSX.Element | JSX.Element[];
 	style: JSX.Element;
 }
 
 interface outer extends parent, child {
+}
+
+interface group extends outer {
+	children: JSX.Element | JSX.Element[];
 }
 
 interface rect extends outer {
@@ -139,6 +147,10 @@ interface rect extends outer {
 
 interface circle extends outer {
 	r: number;
+}
+
+interface image extends outer {
+	href: string;
 }
 
 interface text extends child {
