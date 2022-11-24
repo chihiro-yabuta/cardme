@@ -8,7 +8,7 @@ export const Header = () => {
     <div>
       <p className='title'>Write Code. Express Yourself.</p>
       <p className='sentence'>
-        <span>readme</span> is enable to create <span>SVG</span> from down below.<br/>
+        <span>readme</span> is enable to create <span>SVG</span>.<br/>
         I give you installed components for easy coding.<br/>
         you can show this card everywhere that can uses html.<br/>
         try this app, and if you like it, plz <span>star</span> my repo!

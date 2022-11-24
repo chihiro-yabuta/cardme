@@ -58,3 +58,7 @@ try this app, and if you like it, plz star my repo!
     <td>×</td><td>×</td><td>×</td><td>×</td><td>×</td><td>⭐</td>
   </tr>
 </table>
+
+### Api
+GitHub
+- [User](https://pkg.go.dev/github.com/google/go-github/v48/github#User)
