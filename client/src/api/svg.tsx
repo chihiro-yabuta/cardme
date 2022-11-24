@@ -49,12 +49,11 @@ interface container extends parent {
 	style: JSX.Element;
 }
 
-interface group extends parent {
-	children: JSX.Element | JSX.Element[];
-	className? :string;
+interface outer extends parent, child {
 }
 
-interface outer extends parent, child {
+interface group extends outer {
+	children: JSX.Element | JSX.Element[];
 }
 
 interface rect extends outer {
