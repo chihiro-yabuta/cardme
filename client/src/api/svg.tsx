@@ -9,7 +9,7 @@ export const Container = (props: container) => {
   >{props.style}{props.children}</svg>
 }
 
-export const Group = (props: outer) => {
+export const Group = (props: group) => {
   return <g {...props} />
 }
 
@@ -21,6 +21,10 @@ export const Circle = (props: circle) => {
     return <circle {...props} />
 }
 
+export const Img = (props: image) => {
+	return <image {...props} />
+}
+
 export const Text = (props: text) => {
     return <text {...props} />
 }
@@ -30,7 +34,6 @@ export const Line = (props: line) => {
 }
 
 interface parent {
-	children?: JSX.Element | JSX.Element[];
 	width: number;
 	height: number;
 }
@@ -42,7 +45,12 @@ interface child {
 }
 
 interface container extends parent {
+	children: JSX.Element | JSX.Element[];
 	style: JSX.Element;
+}
+
+interface group extends parent {
+	children: JSX.Element | JSX.Element[];
 }
 
 interface outer extends parent, child {
@@ -55,6 +63,10 @@ interface rect extends outer {
 
 interface circle extends outer {
 	r: number;
+}
+
+interface image extends outer {
+	href: string;
 }
 
 interface text extends child {

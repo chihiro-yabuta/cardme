@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import ReactDOMServer from 'react-dom/server';
 import { Buffer } from 'buffer';
@@ -7,16 +6,7 @@ import { slice } from '../../redux';
 import { Data, userMap } from '../../api/data';
 import { Convert } from '../../api/convert';
 
-export const SVG = (props: { name: string, css: string, jsx: string }) => {
-  const [data, setData]: [any, Function] = useState({});
-  const url = props.name !== ''
-  ? `http://${location.hostname}:8080/?name=${props.name}`
-  : `http://${location.hostname}:8080`;
-  const getData = async () => await axios.get<Data>(url).then((api) => {
-    setData(api.data);
-  });
-  useEffect(() => { getData(); }, [props.name]);
-
+export const SVG = (props: { data: Data, css: string, jsx: string }) => {
   let Canvas = <p style={{ fontSize: 50, color: "red" }}>Bad Grammer</p>
   try {Canvas = Convert(props.css, props.jsx); } catch {;}
 
@@ -26,8 +16,8 @@ export const SVG = (props: { name: string, css: string, jsx: string }) => {
   const base = Buffer.from(str).toString('base64');
   useEffect(() => { dispatch(sendBase64(base)); }, [props.css, props.jsx]);
 
-  if (data.User) {
-    userMap.map((s) => { str = str.replace(`{${s}}`, data.User[s]) });
+  if (props.data.User) {
+    userMap.map((s) => { str = str.replace(`{${s}}`, props.data.User[s]) });
   }
 
   return <div className='imgarea' dangerouslySetInnerHTML={{ __html: str}} />;
