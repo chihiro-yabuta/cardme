@@ -5,7 +5,7 @@ I give you installed components for easy coding.<br>
 you can show this card everywhere that can uses html.<br>
 try this app, and if you like it, plz star my repo!
 
-### Components
+## Components
 ⭐: necessary ○: option ×: can't
 <table>
   <tr><th>\</th><th>Container</th><th>Group</th><th>Rect</th><th>Circle</th><th>Text</th><th>Line</th></tr>
@@ -59,6 +59,6 @@ try this app, and if you like it, plz star my repo!
   </tr>
 </table>
 
-### Api
-GitHub
+## Api
+### GitHub
 - [User](https://pkg.go.dev/github.com/google/go-github/v48/github#User)
