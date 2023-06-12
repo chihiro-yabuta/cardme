@@ -1,0 +1,34 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cardme
+spec:
+  rules:
+  - host: 4card.me
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: cardme
+            port:
+              number: 11291
+    - http:
+      paths:
+      - pathType: Prefix
+        path: /server
+        backend:
+          service:
+            name: cardme
+            port:
+              number: 11292
+    - http:
+      paths:
+      - pathType: Prefix
+        path: /edit
+        backend:
+          service:
+            name: cardme
+            port:
+              number: 11293

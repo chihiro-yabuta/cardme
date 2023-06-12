@@ -20,18 +20,18 @@ spec:
         name: node
         tty: true
         ports:
-        - containerPort: 80
+        - containerPort: 11291
         resources: {}
       - image: chihiro1129yabuta/cardme:golang
         name: golang
         tty: true
         ports:
-        - containerPort: 80
+        - containerPort: 11292
         resources: {}
       - image: chihiro1129yabuta/cardme:python
         name: python
         tty: true
         ports:
-        - containerPort: 80
+        - containerPort: 11293
         resources: {}
 status: {}

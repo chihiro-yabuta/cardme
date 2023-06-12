@@ -6,9 +6,15 @@ metadata:
   name: cardme
 spec:
   ports:
-  - port: 80
+  - port: 11291
     protocol: TCP
-    targetPort: 80
+    targetPort: 11291
+  - port: 11292
+    protocol: TCP
+    targetPort: 11292
+  - port: 11293
+    protocol: TCP
+    targetPort: 11293
   selector:
     app: cardme
   type: LoadBalancer
