@@ -20,8 +20,8 @@ export const Playground = () => {
   const [data, setData]: [any, Function] = useState({});
 
   const url = name !== ''
-  ? `http://${location.hostname}/server/?name=${name}`
-  : `http://${location.hostname}/server`;
+  ? `https://${location.hostname}/server/?name=${name}`
+  : `https://${location.hostname}/server`;
   const getData = async () => await axios.get<Data>(url).then((api) => {
     setData(api.data);
   });

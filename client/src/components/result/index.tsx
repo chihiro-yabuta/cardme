@@ -12,7 +12,7 @@ export const Result = () => {
 
   const getData = async () => {
     const name = `?name=${store.getState().name}&`;
-    const url = (query: string) => `http://${location.hostname}/server/${name+query}`;
+    const url = (query: string) => `https://${location.hostname}/server/${name+query}`;
     const base = store.getState().base64;
     setComp(<p className='wait'>Loading...</p>);
     await axios.get<Data>(url(`raw=${base}`)).then((src) => {
