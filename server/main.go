@@ -14,6 +14,7 @@ func main() {
 	route.LoadHTMLGlob("public/*.html")
 	route.GET("/", func(c *gin.Context) {
 		c.HTML(200, "index.html", nil)
+		c.Header("Content-Security-Policy", "default-src 'self'; img-src *;")
 	})
 	route.GET("/server", d.Get)
 	route.Run()
