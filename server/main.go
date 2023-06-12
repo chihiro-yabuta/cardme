@@ -10,6 +10,11 @@ func main() {
 	d := new(api.Data)
 	route := gin.Default()
 	route.Use(cors.Default())
-	route.GET("/", d.Get)
+	route.Static("/assets", "public/assets")
+	route.LoadHTMLGlob("public/*.html")
+	route.GET("/", func(c *gin.Context) {
+		c.HTML(200, "index.html", nil)
+	})
+	route.GET("/server", d.Get)
 	route.Run()
 }

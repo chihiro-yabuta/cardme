@@ -1,8 +1,9 @@
 .PHONY: _up, _down, _clean, _test, _run, _build, _kill, _client, _server
 
 default:
-	-sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 3000
-	make _client && make _server
+	-make _kill
+	-sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080
+	make _server
 _up:
 	docker compose up -d
 _down:
@@ -11,17 +12,17 @@ _down:
 	make _clean
 _clean:
 	cd server \
-		&& rm -f -R go.mod go.sum
+		&& rm -f -R go.mod go.sum public
 	cd client \
 		&& rm -f -R node_modules package-lock.json \
 		&& cd public \
-			&& rm -f -R index.js index.js.LICENSE.txt
+			&& rm -f -R assets/index.js assets/index.js.LICENSE.txt
 
 _test:
 	circleci config validate
 _run:
-	-make _kill
-	make _build
+	cd client && npm install && npm run build
+	cp -r client/public/ server
 
 _build:
 	make _clean
