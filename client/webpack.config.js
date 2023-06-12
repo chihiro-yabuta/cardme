@@ -6,7 +6,7 @@ module.exports = {
   entry: './public/index.tsx',
 
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'public/assets'),
     filename: 'index.js',
   },
 
