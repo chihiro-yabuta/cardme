@@ -39,7 +39,7 @@ export const Result = () => {
           {comp}
         </div>
         <div className='urlarea'>
-          <p className='url'>{`<img src="${apiURL}" />`}</p>
+          <p className='url'>{`<a href="https://4card.me" target="_blank"><img src="${apiURL}" /></a>`}</p>
         </div>
       </div>
     </div>

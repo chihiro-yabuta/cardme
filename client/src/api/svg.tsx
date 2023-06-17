@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 
 export const Container = (props: container) => {
   return <svg
@@ -21,8 +22,20 @@ export const Circle = (props: circle) => {
     return <circle {...props} />
 }
 
+const getData = async (url: string, setState: Function) => {
+	await axios.get(url).then(api => setState(api.data));
+};
+
 export const Img = (props: image) => {
-	return <image {...props} />
+	const [raw, setRaw] = useState('');
+  getData(props.href, setRaw);
+	return <svg x={props.x} y={props.y} className={props.className}>
+		<g transform={props.scale && `scale(${props.scale} ${props.scale})`}
+			dangerouslySetInnerHTML={
+				{ __html: raw.slice(raw.slice(1).indexOf('<')+1, raw.lastIndexOf('<')) }
+			}
+		/>
+	</svg>
 }
 
 export const Text = (props: text) => {
@@ -65,8 +78,9 @@ interface circle extends outer {
 	r: number;
 }
 
-interface image extends outer {
+interface image extends child {
 	href: string;
+	scale?: number;
 }
 
 interface text extends child {
