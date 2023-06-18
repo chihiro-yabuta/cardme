@@ -15,11 +15,11 @@ try this app, and if you like it, plz star my repo!
   </tr>
   <tr>
     <th>width</th>
-    <td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>×</td><td>×</td>
+    <td>○</td><td>○</td><td>○</td><td>○</td><td>×</td><td>×</td><td>×</td>
   </tr>
   <tr>
     <th>height</th>
-    <td>○</td><td>○</td><td>○</td><td>○</td><td>○</td><td>×</td><td>×</td>
+    <td>○</td><td>○</td><td>○</td><td>○</td><td>×</td><td>×</td><td>×</td>
   </tr>
   <tr>
     <th>className</th>
@@ -48,6 +48,10 @@ try this app, and if you like it, plz star my repo!
   <tr>
     <th>href</th>
     <td>×</td><td>×</td><td>×</td><td>×</td><td>⭐</td><td>×</td><td>×</td>
+  </tr>
+  <tr>
+    <th>scale</th>
+    <td>×</td><td>×</td><td>×</td><td>×</td><td>○</td><td>×</td><td>×</td>
   </tr>
   <tr>
     <th>x2</th>
