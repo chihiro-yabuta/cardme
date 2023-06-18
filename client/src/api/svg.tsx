@@ -4,6 +4,7 @@ import axios from 'axios';
 export const Container = (props: container) => {
   return <svg
     xmlns='http://www.w3.org/2000/svg'
+		xmlnsXlink='http://www.w3.org/1999/xlink'
     viewBox={`0 0 ${props.width} ${props.height}`}
     width={props.width}
 		height={props.height}

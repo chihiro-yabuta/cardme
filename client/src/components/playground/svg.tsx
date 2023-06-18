@@ -13,8 +13,7 @@ export const SVG = (props: { data: Data, css: string, jsx: string }) => {
   const dispatch = useDispatch();
   const { sendBase64 } = slice.actions;
   let str = ReactDOMServer.renderToString(Canvas);
-  const base = Buffer.from(str).toString('base64');
-  useEffect(() => { dispatch(sendBase64(base)); }, [props.css, props.jsx]);
+  dispatch(sendBase64(Buffer.from(str).toString('base64')));
 
   if (props.data.User) {
     userMap.map((s) => { str = str.replace(`{${s}}`, props.data.User[s]) });

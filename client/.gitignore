@@ -1,4 +1,3 @@
 node_modules
 package-lock.json
-public/assets/index.js
-public/assets/index.js.LICENSE.txt
+public/js
