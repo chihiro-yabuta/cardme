@@ -35,12 +35,10 @@ services:
       - ./edit:/root/cardme/edit
     working_dir: /root/cardme/edit
   db:
-    image: mariadb
+    image: redis
     container_name: cardme_db
     tty: true
     restart: always
     volumes:
       - ./db:/root/cardme/db
     working_dir: /root/cardme/db
-    environment:
-      MYSQL_ROOT_PASSWORD: asdf
