@@ -1,0 +1,46 @@
+version: '3'
+services:
+  git:
+    build:
+      context: .
+      dockerfile: .k8s/docker/git/Dockerfile
+    container_name: cardme_git
+    tty: true
+    restart: always
+    volumes:
+      - ./:/root/cardme
+    working_dir: /root/cardme
+  client:
+    image: node
+    container_name: cardme_client
+    tty: true
+    restart: always
+    volumes:
+      - ./client:/root/cardme/client
+    working_dir: /root/cardme/client
+  server:
+    image: golang
+    container_name: cardme_server
+    tty: true
+    restart: always
+    volumes:
+      - ./server:/root/cardme/server
+    working_dir: /root/cardme/server
+  edit:
+    image: python
+    container_name: cardme_edit
+    tty: true
+    restart: always
+    volumes:
+      - ./edit:/root/cardme/edit
+    working_dir: /root/cardme/edit
+  db:
+    image: mariadb
+    container_name: cardme_db
+    tty: true
+    restart: always
+    volumes:
+      - ./db:/root/cardme/db
+    working_dir: /root/cardme/db
+    environment:
+      MYSQL_ROOT_PASSWORD: asdf
