@@ -25,7 +25,7 @@ spec:
           - git
           - clone
           - https://github.com/chihiro-yabuta/cardme.git
-          - vol
+          - cardme
         volumeMounts:
           - name: vol
             mountPath: cardme
@@ -57,7 +57,10 @@ spec:
         ports:
         - containerPort: 11293
         resources: {}
-      - image: redis
+      - args:
+        - redis-server
+        - /cardme/db/redis.conf
+        image: redis
         name: db
         volumeMounts:
           - name: vol
