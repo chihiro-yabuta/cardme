@@ -1,4 +1,3 @@
-FROM redis
+FROM golang
 
-COPY --from=golang /usr/local/go /usr/local/go
-ENV PATH $PATH:/usr/local/go/bin/
+COPY --from=redis /usr/local/bin /usr/local/bin
