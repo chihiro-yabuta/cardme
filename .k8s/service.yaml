@@ -15,6 +15,9 @@ spec:
   - port: 11293
     protocol: TCP
     targetPort: 11293
+  - port: 11294
+    protocol: TCP
+    targetPort: 11294
   selector:
     app: cardme
   type: LoadBalancer

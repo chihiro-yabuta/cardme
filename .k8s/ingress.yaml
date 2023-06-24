@@ -32,3 +32,12 @@ spec:
             name: cardme
             port:
               number: 11293
+    - http:
+      paths:
+      - pathType: Prefix
+        path: /db
+        backend:
+          service:
+            name: cardme
+            port:
+              number: 11294

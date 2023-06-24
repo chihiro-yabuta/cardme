@@ -34,4 +34,10 @@ spec:
         ports:
         - containerPort: 11293
         resources: {}
+      - image: chihiro1129yabuta/cardme:db
+        name: db
+        tty: true
+        ports:
+        - containerPort: 11294
+        resources: {}
 status: {}
