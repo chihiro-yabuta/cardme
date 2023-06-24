@@ -11,6 +11,8 @@ func main() {
 	route := gin.Default()
 	route.Use(cors.Default())
 	route.Static("/assets", "public/assets")
+	route.Static("/css", "public/css")
+	route.Static("/js", "public/js")
 	route.LoadHTMLGlob("public/*.html")
 	route.GET("/", func(c *gin.Context) {
 		c.HTML(200, "index.html", nil)

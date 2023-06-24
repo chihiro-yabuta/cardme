@@ -35,8 +35,8 @@ _build:
 		&& go get github.com/jinzhu/copier \
 		&& go get github.com/gin-contrib/cors
 _kill:
-	pkill webpack
 	pkill main
+	pkill webpack
 _client:
 	cd client && npm run open &
 _server:
