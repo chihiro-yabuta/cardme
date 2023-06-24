@@ -1,9 +1,7 @@
 version: '3'
 services:
   git:
-    build:
-      context: .
-      dockerfile: .k8s/docker/git/Dockerfile
+    image: chihiro1129yabuta/cardme:git
     container_name: cardme_git
     tty: true
     restart: always

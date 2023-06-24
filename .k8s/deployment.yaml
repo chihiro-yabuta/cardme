@@ -15,27 +15,53 @@ spec:
       labels:
         app: cardme
     spec:
+      volumes:
+      - name: vol
+        emptyDir: {}
+      initContainers:
+      - name: git
+        image: bitnami/git
+        command:
+          - git
+          - clone
+          - https://github.com/chihiro-yabuta/cardme.git
+          - vol
+        volumeMounts:
+          - name: vol
+            mountPath: cardme
       containers:
-      - image: chihiro1129yabuta/cardme:node
-        name: node
+      - image: node
+        name: client
+        volumeMounts:
+          - name: vol
+            mountPath: cardme
         tty: true
         ports:
         - containerPort: 11291
         resources: {}
-      - image: chihiro1129yabuta/cardme:golang
-        name: golang
+      - image: golang
+        name: server
+        volumeMounts:
+          - name: vol
+            mountPath: cardme
         tty: true
         ports:
         - containerPort: 11292
         resources: {}
-      - image: chihiro1129yabuta/cardme:python
-        name: python
+      - image: python
+        name: edit
+        volumeMounts:
+          - name: vol
+            mountPath: cardme
         tty: true
         ports:
         - containerPort: 11293
         resources: {}
-      - image: chihiro1129yabuta/cardme:db
+      - image: redis
         name: db
+        volumeMounts:
+          - name: vol
+            mountPath: cardme
         tty: true
         ports:
         - containerPort: 11294
