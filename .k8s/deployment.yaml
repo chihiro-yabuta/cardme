@@ -60,7 +60,7 @@ spec:
       - args:
         - redis-server
         - /cardme/db/redis.conf
-        image: redis
+        image: chihiro1129yabuta/cardme:db
         name: db
         volumeMounts:
           - name: vol

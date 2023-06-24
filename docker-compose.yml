@@ -1,7 +1,9 @@
 version: '3'
 services:
   git:
-    image: chihiro1129yabuta/cardme:git
+    build:
+      context: .
+      dockerfile: '.k8s/docker/git/Dockerfile'
     container_name: cardme_git
     tty: true
     restart: always
@@ -33,7 +35,9 @@ services:
       - ./edit:/root/cardme/edit
     working_dir: /root/cardme/edit
   db:
-    image: redis
+    build:
+      context: .
+      dockerfile: '.k8s/docker/db/Dockerfile'
     container_name: cardme_db
     tty: true
     restart: always
