@@ -14,8 +14,8 @@ export const Result = () => {
     const url = `https://${location.hostname}/post`;
     const base = store.getState().base64;
     setComp(<p className='wait'>Loading...</p>);
-    await axios.post<string>(url, { Svg: base }).then((src) => {
-      setApiURL(`https://${location.hostname}/post/${name+src.data}`);
+    await axios.post<{ key: string }>(url, { Svg: base }).then((src) => {
+      setApiURL(`https://${location.hostname}/get/${name}key=${src.data.key}`);
     });
   };
 

@@ -21,6 +21,6 @@ func (d *Data) GetData(c *gin.Context) {
 }
 
 func (d *Data) GetSvg(c *gin.Context) {
-	svg := strings.ReplaceAll(c.PostForm("svg"),  " ", "+")
+	svg := strings.ReplaceAll(c.DefaultQuery("key", ""),  " ", "+")
 	d.Decode(svg)
 }

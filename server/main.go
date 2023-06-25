@@ -23,7 +23,7 @@ func main() {
 	p := new(post.Data)
 
 	route.GET("/api", a.Run)
-	route.GET("/post", g.Run)
+	route.POST("/post", g.Run)
 	route.GET("/get", p.Run)
 	route.Run()
 }
