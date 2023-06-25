@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { GiFallingStar } from 'react-icons/gi';
 import { VscDebugStart } from "react-icons/vsc";
-import { Data } from '../../api/data';
 import { store } from '../../redux';
 
 export const Result = () => {
@@ -12,12 +11,11 @@ export const Result = () => {
 
   const getData = async () => {
     const name = `?name=${store.getState().name}&`;
-    const url = (query: string) => `https://${location.hostname}/server/${name+query}`;
+    const url = `https://${location.hostname}/post`;
     const base = store.getState().base64;
     setComp(<p className='wait'>Loading...</p>);
-    await axios.get<Data>(url(`raw=${base}`)).then((src) => {
-      setApiURL(url(`mode=html&src=${src.data.Svg.EncSvg}`));
-      setComp(<img src={url(`mode=html&src=${src.data.Svg.EncSvg}`)} />);
+    await axios.post<string>(url, { Svg: base }).then((src) => {
+      setApiURL(`https://${location.hostname}/post/${name+src.data}`);
     });
   };
 

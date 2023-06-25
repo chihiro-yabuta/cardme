@@ -1,9 +1,4 @@
-export interface Data {
-	User?  :User;
-	Svg?   :Svg;
-}
-
-interface User {
+export interface User {
 	Login?                   :string;
 	ID?                      :number;
 	NodeID?                  :string;
@@ -60,11 +55,6 @@ interface Plan {
 	PrivateRepos  :number;
 	FilledSeats   :number;
 	Seats         :number;
-}
-
-interface Svg {
-	EncSvg? :string;
-	DecSvg? :string;
 }
 
 export const userMap = [

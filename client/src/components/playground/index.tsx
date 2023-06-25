@@ -8,7 +8,7 @@ import { javascript } from '@codemirror/lang-javascript';
 import { vscodeDark } from '@uiw/codemirror-theme-vscode';
 import { css as langCSS } from '@codemirror/lang-css';
 import { slice } from '../../redux';
-import { Data } from '../../api/data';
+import { User } from '../../api/data';
 import { defaultJSX, defaultCSS, options, user } from '../example';
 import { SVG } from './svg';
 
@@ -17,19 +17,19 @@ export const Playground = () => {
   const [jsx, setJSX] = useState(defaultJSX);
   const [css, setCSS] = useState(defaultCSS);
   const [idx, setIdx] = useState(0);
-  const [data, setData]: [any, Function] = useState({});
+  const [user, setUser]: [User, Function] = useState(null);
 
   const url = name !== ''
-  ? `https://${location.hostname}/server/?name=${name}`
-  : `https://${location.hostname}/server`;
-  const getData = async () => await axios.get<Data>(url).then((api) => {
-    setData(api.data);
+  ? `https://${location.hostname}/api/?name=${name}`
+  : `https://${location.hostname}/api`;
+  const getData = async () => await axios.get<User>(url).then((api) => {
+    setUser(api.data);
   });
 
   const dispatch = useDispatch();
-  useEffect(() => { dispatch(slice.actions.sendName(name)); getData(); }, [name]);
+  useEffect(() => { dispatch(slice.actions.sendName(name)); getData(); }, [idx]);
   const code = [
-    <SVG data={data} css={css} jsx={jsx} />,
+    <SVG user={user} css={css} jsx={jsx} />,
     <CodeMirror
       value={jsx} width='800' theme={vscodeDark} extensions={[javascript({ jsx: true })]}
       onChange={ (value) => setJSX(value) } />,
