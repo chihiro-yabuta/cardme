@@ -16,33 +16,25 @@ services:
     tty: true
     restart: always
     volumes:
-      - ./client:/root/cardme/client
+      - ./:/root/cardme
     working_dir: /root/cardme/client
   server:
-    image: golang
+    build:
+      context: .
+      dockerfile: '.k8s/docker/server/Dockerfile'
     container_name: cardme_server
     tty: true
     restart: always
     volumes:
-      - ./server:/root/cardme/server
+      - ./:/root/cardme
+      - ./server/redis.conf:/usr/local/etc/redis/redis.conf
     working_dir: /root/cardme/server
+    command: redis-server /usr/local/etc/redis/redis.conf
   edit:
     image: python
     container_name: cardme_edit
     tty: true
     restart: always
     volumes:
-      - ./edit:/root/cardme/edit
+      - ./:/root/cardme
     working_dir: /root/cardme/edit
-  db:
-    build:
-      context: .
-      dockerfile: '.k8s/docker/db/Dockerfile'
-    container_name: cardme_db
-    tty: true
-    restart: always
-    volumes:
-      - ./db:/root/cardme/db
-      - ./db/redis.conf:/usr/local/etc/redis/redis.conf
-    working_dir: /root/cardme/db
-    command: redis-server /usr/local/etc/redis/redis.conf
