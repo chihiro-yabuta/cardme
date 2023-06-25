@@ -1,4 +1,4 @@
-package api
+package get
 
 import (
 	"fmt"
@@ -6,8 +6,8 @@ import (
 	"reflect"
 )
 
-func GitReplace(svg string, d *Data) string {
-	result := svg
+func (d *Data) GitReplace() string {
+	result := d.Svg
 	typeOf := reflect.TypeOf(d.User)
 	valueOf := reflect.ValueOf(d.User)
 	for i := 0; i < typeOf.NumField(); i++ {

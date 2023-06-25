@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func (d *Data) Post(c *gin.Context) {
+func (d *Data) Run(c *gin.Context) {
 	d.GetSvg(c)
 }
 

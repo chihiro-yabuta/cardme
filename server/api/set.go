@@ -1,10 +1,7 @@
 package api
 
 import (
-	"bytes"
 	"strings"
-	"compress/flate"
-	"encoding/base64"
 	"github.com/google/go-github/v48/github"
 	"github.com/jinzhu/copier"
 )
@@ -61,22 +58,4 @@ func (u *User) SetUser(uResp *github.User) {
 		RoleName                :rm(uResp.GetRoleName()),
 	}
 	copier.Copy(&u, &uc)
-}
-
-func (s *Svg) Encode(element string) {
-	base, _ := base64.StdEncoding.DecodeString(element)
-	var enc bytes.Buffer
-	w, _ := flate.NewWriter(&enc, flate.BestCompression)
-	w.Write(base)
-	w.Close()
-	s.EncSvg = base64.StdEncoding.EncodeToString(enc.Bytes())
-}
-
-func (s *Svg) Decode(element string) {
-	base, _ := base64.StdEncoding.DecodeString(element)
-	var dec bytes.Buffer
-	r := flate.NewReader(bytes.NewReader(base))
-	dec.ReadFrom(r)
-	r.Close()
-	s.DecSvg = dec.String()
 }

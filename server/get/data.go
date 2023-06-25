@@ -4,6 +4,11 @@ import (
 	"github.com/google/go-github/v48/github"
 )
 
+type Data struct {
+	User User
+	Svg  string
+}
+
 type User struct {
 	Login                   string
 	ID                      int64
