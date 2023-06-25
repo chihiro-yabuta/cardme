@@ -39,7 +39,10 @@ spec:
         ports:
         - containerPort: 11291
         resources: {}
-      - image: golang
+      - args:
+        - redis-server
+        - /cardme/db/redis.conf
+        image: chihiro1129yabuta/cardme:server
         name: server
         volumeMounts:
           - name: vol
@@ -56,17 +59,5 @@ spec:
         tty: true
         ports:
         - containerPort: 11293
-        resources: {}
-      - args:
-        - redis-server
-        - /cardme/db/redis.conf
-        image: chihiro1129yabuta/cardme:db
-        name: db
-        volumeMounts:
-          - name: vol
-            mountPath: cardme
-        tty: true
-        ports:
-        - containerPort: 11294
         resources: {}
 status: {}
