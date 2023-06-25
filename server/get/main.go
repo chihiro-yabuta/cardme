@@ -4,6 +4,7 @@ import (
 	"context"
 	"strings"
 	"github.com/gin-gonic/gin"
+	"github.com/google/go-github/v48/github"
 )
 
 func (d *Data) Run(c *gin.Context) {

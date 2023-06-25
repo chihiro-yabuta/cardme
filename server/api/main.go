@@ -2,9 +2,8 @@ package api
 
 import (
 	"context"
-	"strings"
-	"github.com/google/go-github/v48/github"
 	"github.com/gin-gonic/gin"
+	"github.com/google/go-github/v48/github"
 )
 
 func (u *User) Run(c *gin.Context) {
@@ -12,7 +11,7 @@ func (u *User) Run(c *gin.Context) {
 	c.JSON(200, u)
 }
 
-func (u *Data) GetData(c *gin.Context) {
+func (u *User) GetData(c *gin.Context) {
 	name := c.DefaultQuery("name", "Google")
 	user := github.NewClient(nil).Users
 	uResp, _, _ := user.Get(context.Background(), name)

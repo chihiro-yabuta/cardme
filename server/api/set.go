@@ -2,8 +2,8 @@ package api
 
 import (
 	"strings"
-	"github.com/google/go-github/v48/github"
 	"github.com/jinzhu/copier"
+	"github.com/google/go-github/v48/github"
 )
 
 func rm (s string) string { return strings.Split(s, "{")[0] }

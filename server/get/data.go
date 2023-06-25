@@ -1,4 +1,4 @@
-package api
+package get
 
 import (
 	"github.com/google/go-github/v48/github"

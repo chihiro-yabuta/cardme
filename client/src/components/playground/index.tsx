@@ -9,7 +9,7 @@ import { vscodeDark } from '@uiw/codemirror-theme-vscode';
 import { css as langCSS } from '@codemirror/lang-css';
 import { slice } from '../../redux';
 import { User } from '../../api/data';
-import { defaultJSX, defaultCSS, options, user } from '../example';
+import { defaultJSX, defaultCSS, options, userMap } from '../example';
 import { SVG } from './svg';
 
 export const Playground = () => {
@@ -40,7 +40,7 @@ export const Playground = () => {
       value={options} width='800' theme={vscodeDark}
       extensions={[javascript({ jsx: true })]} readOnly />,
     <CodeMirror
-      value={user} width='800' theme={vscodeDark}
+      value={userMap} width='800' theme={vscodeDark}
       extensions={[javascript()]} readOnly />,
   ];
   const btn = ['svg', 'jsx', 'css', 'opt', 'usr'].map((s, i) => (
