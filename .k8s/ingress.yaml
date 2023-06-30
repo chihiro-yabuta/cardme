@@ -13,16 +13,7 @@ spec:
           service:
             name: cardme
             port:
-              number: 11291
-    - http:
-      paths:
-      - pathType: Prefix
-        path: /server
-        backend:
-          service:
-            name: cardme
-            port:
-              number: 11292
+              number: 80
     - http:
       paths:
       - pathType: Prefix
@@ -31,4 +22,4 @@ spec:
           service:
             name: cardme
             port:
-              number: 11293
+              number: 8080

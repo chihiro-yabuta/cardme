@@ -36,12 +36,10 @@ spec:
           - name: vol
             mountPath: cardme
         tty: true
-        ports:
-        - containerPort: 11291
         resources: {}
       - args:
         - redis-server
-        - /cardme/db/redis.conf
+        - /cardme/server/redis.conf
         image: chihiro1129yabuta/cardme:server
         name: server
         volumeMounts:
@@ -49,7 +47,7 @@ spec:
             mountPath: cardme
         tty: true
         ports:
-        - containerPort: 11292
+        - containerPort: 80
         resources: {}
       - image: python
         name: edit
@@ -58,6 +56,6 @@ spec:
             mountPath: cardme
         tty: true
         ports:
-        - containerPort: 11293
+        - containerPort: 8080
         resources: {}
 status: {}
