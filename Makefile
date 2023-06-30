@@ -33,7 +33,8 @@ _build:
 		&& go get github.com/google/go-github/v48 \
 		&& go get github.com/google/go-querystring \
 		&& go get github.com/jinzhu/copier \
-		&& go get github.com/gin-contrib/cors
+		&& go get github.com/gin-contrib/cors \
+		&& go get github.com/redis/go-redis/v9
 _kill:
 	pkill main
 	pkill webpack
