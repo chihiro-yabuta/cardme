@@ -6,6 +6,7 @@ import (
 
 type Data struct {
 	user user
+	key  string
 	svg  string
 }
 

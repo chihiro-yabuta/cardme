@@ -2,8 +2,8 @@ package get
 
 import (
 	"context"
-	"strings"
 	"github.com/gin-gonic/gin"
+	"github.com/redis/go-redis/v9"
 	"github.com/google/go-github/v48/github"
 )
 
@@ -22,6 +22,15 @@ func (d *Data) getData(c *gin.Context) {
 }
 
 func (d *Data) getSvg(c *gin.Context) {
-	svg := strings.ReplaceAll(c.DefaultQuery("key", ""),  " ", "+")
-	d.decode(svg)
+	d.key = c.DefaultQuery("key", "")
+	d.redis()
+	d.decode()
+}
+
+func (d *Data) redis() {
+	var ctx = context.Background()
+	rdb := redis.NewClient(&redis.Options{
+		Addr: "localhost:6379",
+	})
+	d.svg, _ = rdb.Get(ctx, d.key).Result()
 }

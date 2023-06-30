@@ -63,8 +63,8 @@ func (u *user) setUser(uResp *github.User) {
 	copier.Copy(&u, &uc)
 }
 
-func (d *Data) decode(element string) {
-	base, _ := base64.StdEncoding.DecodeString(element)
+func (d *Data) decode() {
+	base, _ := base64.StdEncoding.DecodeString(d.svg)
 	var dec bytes.Buffer
 	r := flate.NewReader(bytes.NewReader(base))
 	dec.ReadFrom(r)
