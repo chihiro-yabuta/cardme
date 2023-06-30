@@ -18,7 +18,9 @@ export const Result = () => {
     const url = `${hostname}/post`;
     const base = store.getState().base64;
     setComp(<p className='wait'>Loading...</p>);
-    await axios.post<{ key: string }>(url, { svg: base }).then((src) => {
+    await axios.post<{ key: string }>(url, { svg: base }, {
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    }).then((src) => {
       setApiURL(`${hostname}/get/${name}key=${src.data.key}`);
       setComp(<img src={`${hostname}/get/${name}key=${src.data.key}`} />);
     });
