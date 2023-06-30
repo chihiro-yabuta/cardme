@@ -19,11 +19,11 @@ func main() {
 	route.GET("/", func(c *gin.Context) { c.HTML(200, "index.html", nil) })
 
 	a := new(api.User)
-	g := new(get.Data)
 	p := new(post.Data)
+	g := new(get.Data)
 
 	route.GET("/api", a.Run)
-	route.POST("/post", g.Run)
-	route.GET("/get", p.Run)
+	route.POST("/post", p.Run)
+	route.GET("/get", g.Run)
 	route.Run()
 }

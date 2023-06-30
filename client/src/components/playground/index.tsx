@@ -19,9 +19,11 @@ export const Playground = () => {
   const [idx, setIdx] = useState(0);
   const [user, setUser]: [User, Function] = useState(null);
 
-  const url = name !== ''
-  ? `https://${location.hostname}/api/?name=${name}`
-  : `https://${location.hostname}/api`;
+  const hostname = location.hostname == 'localhost'
+    ? `http://localhost:8080`
+    : `https://${location.hostname}`
+  ;
+  const url = name !== '' ? `${hostname}/api/?name=${name}` : `${hostname}/api`;
   const getData = async () => await axios.get<User>(url).then((api) => {
     setUser(api.data);
   });

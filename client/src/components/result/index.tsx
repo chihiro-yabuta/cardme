@@ -10,12 +10,17 @@ export const Result = () => {
   const [comp, setComp] = useState(<p className='wait'>waiting...</p>);
 
   const getData = async () => {
+    const hostname = location.hostname == 'localhost'
+      ? `http://localhost:8080`
+      : `https://${location.hostname}`
+    ;
     const name = `?name=${store.getState().name}&`;
-    const url = `https://${location.hostname}/post`;
+    const url = `${hostname}/post`;
     const base = store.getState().base64;
     setComp(<p className='wait'>Loading...</p>);
-    await axios.post<{ key: string }>(url, { Svg: base }).then((src) => {
-      setApiURL(`https://${location.hostname}/get/${name}key=${src.data.key}`);
+    await axios.post<{ key: string }>(url, { svg: base }).then((src) => {
+      setApiURL(`${hostname}/get/${name}key=${src.data.key}`);
+      setComp(<img src={`${hostname}/get/${name}key=${src.data.key}`} />);
     });
   };
 

@@ -18,7 +18,7 @@ func (d *Data) GetSvg(c *gin.Context) {
 }
 
 func (d *Data) GetRand() {
-	b := make([]byte, 100)
-	rand.Read(b)
-  for _, v := range b { d.Key += string(d.Key[int(v)%len(d.Key)]) }
+	for i := 0; i < 100; i++ {
+		d.Key += string(d.Svg[rand.Intn(len(d.Svg))])
+	}
 }
