@@ -18,7 +18,7 @@ func (d *Data) getData(c *gin.Context) {
 	name := c.DefaultQuery("name", "Google")
 	user := github.NewClient(nil).Users
 	uResp, _, _ := user.Get(context.Background(), name)
-	d.User.setUser(uResp)
+	d.user.setUser(uResp)
 }
 
 func (d *Data) getSvg(c *gin.Context) {

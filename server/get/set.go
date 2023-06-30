@@ -10,8 +10,8 @@ import (
 )
 
 func rm (s string) string { return strings.Split(s, "{")[0] }
-func (u *User) setUser(uResp *github.User) {
-	uc := User {
+func (u *user) setUser(uResp *github.User) {
+	uc := user {
 		Login                   :rm(uResp.GetLogin()),
 		ID                      :uResp.GetID(),
 		NodeID                  :rm(uResp.GetNodeID()),
@@ -69,5 +69,5 @@ func (d *Data) decode(element string) {
 	r := flate.NewReader(bytes.NewReader(base))
 	dec.ReadFrom(r)
 	r.Close()
-	d.Svg = dec.String()
+	d.svg = dec.String()
 }

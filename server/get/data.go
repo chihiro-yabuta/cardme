@@ -5,11 +5,11 @@ import (
 )
 
 type Data struct {
-	User User
-	Svg  string
+	user user
+	svg  string
 }
 
-type User struct {
+type user struct {
 	Login                   string
 	ID                      int64
 	NodeID                  string

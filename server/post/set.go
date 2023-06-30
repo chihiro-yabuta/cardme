@@ -12,5 +12,5 @@ func (d *Data) encode(element string) {
 	w, _ := flate.NewWriter(&enc, flate.BestCompression)
 	w.Write(base)
 	w.Close()
-	d.Svg = base64.StdEncoding.EncodeToString(enc.Bytes())
+	d.svg = base64.StdEncoding.EncodeToString(enc.Bytes())
 }

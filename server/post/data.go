@@ -1,6 +1,6 @@
 package post
 
 type Data struct {
-	Key string
-	Svg string
+	key string
+	svg string
 }
