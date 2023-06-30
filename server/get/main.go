@@ -2,6 +2,7 @@ package get
 
 import (
 	"context"
+	"strings"
 	"github.com/gin-gonic/gin"
 	"github.com/redis/go-redis/v9"
 	"github.com/google/go-github/v48/github"
@@ -22,7 +23,7 @@ func (d *Data) getData(c *gin.Context) {
 }
 
 func (d *Data) getSvg(c *gin.Context) {
-	d.key = c.DefaultQuery("key", "")
+	d.key = strings.ReplaceAll(c.DefaultQuery("key", ""),  " ", "+")
 	d.redis()
 	d.decode()
 }

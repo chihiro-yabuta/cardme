@@ -12,6 +12,7 @@ func (d *Data) Run(c *gin.Context) {
 	d.getSvg(c)
 	d.getRand()
 	d.redis()
+	c.JSON(200, gin.H{ "key": d.key })
 }
 
 func (d *Data) getSvg(c *gin.Context) {
