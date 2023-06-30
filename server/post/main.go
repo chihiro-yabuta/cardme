@@ -7,17 +7,17 @@ import (
 )
 
 func (d *Data) Run(c *gin.Context) {
-	d.GetSvg(c)
-	d.GetRand()
+	d.getSvg(c)
+	d.getRand()
 	c.JSON(200, gin.H{ "key": d.Key })
 }
 
-func (d *Data) GetSvg(c *gin.Context) {
+func (d *Data) getSvg(c *gin.Context) {
 	svg := strings.ReplaceAll(c.PostForm("svg"),  " ", "+")
-	d.Encode(svg)
+	d.encode(svg)
 }
 
-func (d *Data) GetRand() {
+func (d *Data) getRand() {
 	for i := 0; i < 100; i++ {
 		d.Key += string(d.Svg[rand.Intn(len(d.Svg))])
 	}

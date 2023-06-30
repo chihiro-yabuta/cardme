@@ -8,20 +8,20 @@ import (
 )
 
 func (d *Data) Run(c *gin.Context) {
-	d.GetData(c)
-	d.GetSvg(c)
+	d.getData(c)
+	d.getSvg(c)
 	c.Writer.Header().Set("Content-Type", "image/svg+xml")
-	c.Writer.Write([]byte(d.GitReplace()))
+	c.Writer.Write([]byte(d.gitReplace()))
 }
 
-func (d *Data) GetData(c *gin.Context) {
+func (d *Data) getData(c *gin.Context) {
 	name := c.DefaultQuery("name", "Google")
 	user := github.NewClient(nil).Users
 	uResp, _, _ := user.Get(context.Background(), name)
-	d.User.SetUser(uResp)
+	d.User.setUser(uResp)
 }
 
-func (d *Data) GetSvg(c *gin.Context) {
+func (d *Data) getSvg(c *gin.Context) {
 	svg := strings.ReplaceAll(c.DefaultQuery("key", ""),  " ", "+")
-	d.Decode(svg)
+	d.decode(svg)
 }

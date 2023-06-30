@@ -6,7 +6,7 @@ import (
 	"reflect"
 )
 
-func (d *Data) GitReplace() string {
+func (d *Data) gitReplace() string {
 	result := d.Svg
 	typeOf := reflect.TypeOf(d.User)
 	valueOf := reflect.ValueOf(d.User)

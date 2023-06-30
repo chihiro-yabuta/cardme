@@ -7,7 +7,7 @@ import (
 )
 
 func rm (s string) string { return strings.Split(s, "{")[0] }
-func (u *User) SetUser(uResp *github.User) {
+func (u *User) setUser(uResp *github.User) {
 	uc := User {
 		Login                   :rm(uResp.GetLogin()),
 		ID                      :uResp.GetID(),
