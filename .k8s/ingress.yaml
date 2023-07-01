@@ -13,13 +13,4 @@ spec:
           service:
             name: cardme
             port:
-              number: 80
-    - http:
-      paths:
-      - pathType: Prefix
-        path: /edit
-        backend:
-          service:
-            name: cardme
-            port:
               number: 8080

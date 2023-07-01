@@ -30,11 +30,3 @@ services:
       - ./server/redis.conf:/usr/local/etc/redis/redis.conf
     working_dir: /root/cardme/server
     command: redis-server /usr/local/etc/redis/redis.conf
-  edit:
-    image: python
-    container_name: cardme_edit
-    tty: true
-    restart: always
-    volumes:
-      - ./:/root/cardme
-    working_dir: /root/cardme/edit
