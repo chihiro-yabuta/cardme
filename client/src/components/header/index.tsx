@@ -2,7 +2,7 @@ import '../../index.css';
 import React from 'react';
 
 export const Header = () => {
-  const hostname = location.hostname == 'localhost'
+  const hostname = location.hostname === 'localhost'
     ? `http://localhost:8080`
     : `https://${location.hostname}`
   ;

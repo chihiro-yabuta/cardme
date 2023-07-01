@@ -5,13 +5,13 @@ export const Convert = (css: string, jsx: string) => {
   const SVG: any = [];
   let target: any = SVG;
 
-  jsx.split('\n').map((l) => {
+  jsx.replace(/(s*<.*[^>])\n/gm, '$1').split('\n').map((l) => {
     const pos = l.search(/\S/g);
     const isEnd = l[l.indexOf('<')+1] === '/';
     const isAlone = l[l.indexOf('>')-1] === '/';
     const isJsx = l[pos] === '<';
     if (isJsx) {
-      const el = l.replace(/<|>|\/>/g,'').split(' ').filter(e=>e!=='');
+      const el = l.replace(/<|>|\/>/g,'').split(/\s+/).filter(e=>e!=='');
       if (isEnd) {
         target = SVG;
         [...Array(pos/2|0)].map(() => target = target[target.length-1].children);

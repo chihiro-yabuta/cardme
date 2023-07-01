@@ -19,7 +19,7 @@ export const Playground = () => {
   const [idx, setIdx] = useState(0);
   const [user, setUser]: [User, Function] = useState(null);
 
-  const hostname = location.hostname == 'localhost'
+  const hostname = location.hostname === 'localhost'
     ? `http://localhost:8080`
     : `https://${location.hostname}`
   ;

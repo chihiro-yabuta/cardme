@@ -27,7 +27,7 @@ export const Circle = (props: circle) => {
 const getData = async (url: string, setEnc: Function, setIsSvg: Function) => {
 	await axios.get(url, { 'responseType': 'arraybuffer' }).then((api) => {
     setEnc(Buffer.from(api.data).toString('base64'));
-    setIsSvg(url.slice(url.lastIndexOf('.')+1) == 'svg');
+    setIsSvg(url.slice(url.lastIndexOf('.')+1) === 'svg');
   });
 };
 

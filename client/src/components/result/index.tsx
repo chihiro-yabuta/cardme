@@ -10,7 +10,7 @@ export const Result = () => {
   const [comp, setComp] = useState(<p className='wait'>waiting...</p>);
 
   const getData = async () => {
-    const hostname = location.hostname == 'localhost'
+    const hostname = location.hostname === 'localhost'
       ? `http://localhost:8080`
       : `https://${location.hostname}`
     ;
