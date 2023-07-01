@@ -17,5 +17,5 @@ Including another URLconf
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('cv2.urls'))
+    path('', include('img.urls'))
 ]
