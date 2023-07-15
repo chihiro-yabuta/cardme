@@ -11,7 +11,6 @@ _up:
 _down:
 	docker compose down
 	docker system prune -a
-	make _clean
 _clean:
 	cd server \
 		&& rm -f -R go.sum public
@@ -27,7 +26,6 @@ _run:
 	cp -r client/public/ server
 
 _build:
-	make _clean
 	cd client && npm install
 	cd server && go mod tidy
 _kill:
