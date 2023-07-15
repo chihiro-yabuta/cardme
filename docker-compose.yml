@@ -1,10 +1,13 @@
 version: '3'
 services:
-  git:
+  opt:
     build:
       context: .
-      dockerfile: '.k8s/docker/git/Dockerfile'
-    container_name: cardme_git
+      dockerfile: k8s/docker/opt/Dockerfile
+      args:
+        git_email: ${git_email}
+        git_name: ${git_name}
+    container_name: cardme
     tty: true
     restart: always
     volumes:
@@ -21,7 +24,7 @@ services:
   server:
     build:
       context: .
-      dockerfile: '.k8s/docker/server/Dockerfile'
+      dockerfile: k8s/docker/server/Dockerfile
     container_name: cardme_server
     tty: true
     restart: always

@@ -5,14 +5,16 @@ default:
 	-sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080
 	make _server
 _up:
+	. sh/env.sh
 	docker compose up -d
+	rm .env
 _down:
 	docker compose down
 	docker system prune -a
 	make _clean
 _clean:
 	cd server \
-		&& rm -f -R go.mod go.sum public
+		&& rm -f -R go.sum public
 	cd client \
 		&& rm -f -R node_modules package-lock.json \
 		&& cd public \
@@ -27,14 +29,7 @@ _run:
 _build:
 	make _clean
 	cd client && npm install
-	cd server \
-		&& go mod init go \
-		&& go get -u github.com/gin-gonic/gin \
-		&& go get github.com/google/go-github/v48 \
-		&& go get github.com/google/go-querystring \
-		&& go get github.com/jinzhu/copier \
-		&& go get github.com/gin-contrib/cors \
-		&& go get github.com/redis/go-redis/v9
+	cd server && go mod tidy
 _kill:
 	pkill main
 	pkill webpack

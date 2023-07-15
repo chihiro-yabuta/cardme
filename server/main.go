@@ -3,9 +3,9 @@ package main
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
-	"go/api"
-	"go/get"
-	"go/post"
+	"server/api"
+	"server/get"
+	"server/post"
 )
 
 func main() {
