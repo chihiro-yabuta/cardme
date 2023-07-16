@@ -32,7 +32,7 @@ spec:
       containers:
       - args:
         - make
-        - client
+        - c
         image: node
         name: client
         volumeMounts:
@@ -40,10 +40,10 @@ spec:
             mountPath: cardme
         tty: true
         resources: {}
-        workDir: cardme
+        workingDir: /cardme
       - args:
         - make
-        - server
+        - s
         image: chihiro1129yabuta/cardme:server
         name: server
         volumeMounts:
@@ -53,5 +53,5 @@ spec:
         ports:
         - containerPort: 8080
         resources: {}
-        workDir: cardme
+        workingDir: /cardme
 status: {}
