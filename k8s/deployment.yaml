@@ -22,8 +22,8 @@ spec:
       - args:
         - /bin/sh
         - -c
-        - "git clone https://github.com/chihiro-yabuta/cardme.git cardme \
-          && cd cardme && make c"
+        - git clone https://github.com/chihiro-yabuta/cardme.git cardme
+          && cd cardme && make c
         name: client
         image: node
         volumeMounts:
@@ -32,7 +32,7 @@ spec:
       containers:
       - args:
         - make
-        - c
+        - s
         image: chihiro1129yabuta/cardme:server
         name: server
         volumeMounts:

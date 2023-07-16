@@ -11,13 +11,13 @@ jobs:
           command: echo "CircleCI Test"
   deploy:
     docker:
-      image: cimg/base:current
+      image: chihiro1129yabuta/cardme:opt
     steps:
       - checkout
-      - add_ssh_keys:
-          fingerprints:
-            - "${KEY_FINGERPRINT}"
-      - run: ssh -o StrictHostKeyChecking=no ${USER_NAME}@${HOST_NAME} "${RUN}"
+      - run: aws configure set aws_access_key_id ${access}
+      - run: aws configure set aws_secret_access_key ${secret}
+      - run: aws configure set region ap-northeast-1
+      - run: kubectl rollout restart deployment cardme
 
 workflows:
   version: 2

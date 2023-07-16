@@ -6,8 +6,11 @@ metadata:
   name: cardme
 spec:
   ports:
-  - port: 8080
-    protocol: TCP
+  - name: http
+    port: 80
+    targetPort: 8080
+  - name: https
+    port: 443
     targetPort: 8080
   selector:
     app: cardme

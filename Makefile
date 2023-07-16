@@ -1,11 +1,9 @@
-.PHONY: run, c, s, d, r, test
+.PHONY: c, s, d, r, test
 
 default:
 	. sh/env.sh
 	docker compose up -d
 	rm .env
-run:
-	aaa
 c:
 	cd client && npm install && npm run build
 	cp -r client/public server
