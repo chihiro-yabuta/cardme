@@ -30,16 +30,20 @@ spec:
           - name: vol
             mountPath: cardme
       containers:
-      - image: node
+      - args:
+        - make
+        - client
+        image: node
         name: client
         volumeMounts:
           - name: vol
             mountPath: cardme
         tty: true
         resources: {}
+        workDir: cardme
       - args:
-        - redis-server
-        - /cardme/server/redis.conf
+        - make
+        - server
         image: chihiro1129yabuta/cardme:server
         name: server
         volumeMounts:
@@ -49,4 +53,5 @@ spec:
         ports:
         - containerPort: 8080
         resources: {}
+        workDir: cardme
 status: {}

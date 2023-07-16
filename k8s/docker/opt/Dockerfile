@@ -16,3 +16,12 @@ RUN curl -sLO "https://github.com/eksctl-io/eksctl/releases/\
 latest/download/eksctl_linux_amd64.tar.gz"
 RUN tar -xzf eksctl_linux_amd64.tar.gz && rm eksctl_linux_amd64.tar.gz
 RUN sudo mv eksctl /usr/local/bin
+
+ARG git_email git_name access secret
+
+RUN git config --global user.email ${git_email}
+RUN git config --global user.name ${git_name}
+
+RUN aws configure set aws_access_key_id ${access}
+RUN aws configure set aws_secret_access_key ${secret}
+RUN aws configure set region ap-northeast-1

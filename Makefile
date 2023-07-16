@@ -1,17 +1,13 @@
-.PHONY: _up, _down, _clean, _test, _run, _build, _kill, _client, _server
+.PHONY: d, c, test, run, client, server
 
 default:
-	-make _kill
-	-sudo iptables -t nat -I PREROUTING -p tcp --dport 80 -j REDIRECT --to-ports 8080
-	make _server
-_up:
 	. sh/env.sh
 	docker compose up -d
 	rm .env
-_down:
+d:
 	docker compose down
 	docker system prune -a
-_clean:
+c:
 	cd server \
 		&& rm -f -R go.sum public
 	cd client \
@@ -19,22 +15,16 @@ _clean:
 		&& cd public \
 			&& rm -f -R assets/index.js assets/index.js.LICENSE.txt
 
-_test:
+test:
 	circleci config validate
-_run:
-	cd client && npm install && npm run build
-	cp -r client/public/ server
+run:
 
-_build:
-	cd client && npm install
-	cd server && go mod tidy
-_kill:
-	pkill main
-	pkill webpack
-_client:
-	cd client && npm run open &
-_server:
-	cd server && go run main.go &
+client:
+	cd client && npm install && npm run build
+	cp -r client/public server
+server:
+	redis-server server/redis.conf
+	cd server && go mod tidy && go run main.go
 
 # memo
 
