@@ -10,7 +10,7 @@ c:
 	cd client && npm install && npm run build
 	cp -r client/public server
 s:
-	redis-server server/redis.conf
+	redis-server server/redis.conf &
 	cd server && go mod tidy && go run main.go
 
 d:

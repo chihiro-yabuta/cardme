@@ -19,13 +19,13 @@ spec:
       - name: vol
         emptyDir: {}
       initContainers:
-      - name: git
-        image: bitnami/git
-        command:
-          - git
-          - clone
-          - https://github.com/chihiro-yabuta/cardme.git
-          - cardme
+      - args:
+        - /bin/sh
+        - -c
+        - "git clone https://github.com/chihiro-yabuta/cardme.git cardme \
+          && cd cardme && make c"
+        name: client
+        image: node
         volumeMounts:
           - name: vol
             mountPath: cardme
@@ -33,17 +33,6 @@ spec:
       - args:
         - make
         - c
-        image: node
-        name: client
-        volumeMounts:
-          - name: vol
-            mountPath: cardme
-        tty: true
-        resources: {}
-        workingDir: /cardme
-      - args:
-        - make
-        - s
         image: chihiro1129yabuta/cardme:server
         name: server
         volumeMounts:
