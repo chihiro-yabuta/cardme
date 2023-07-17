@@ -23,20 +23,5 @@ r:
 			&& rm -f -R assets/index.js assets/index.js.LICENSE.txt
 test:
 	circleci config validate
-
-# memo
-
-# curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-# . ~/.nvm/nvm.sh
-# nvm install v17.6.0
-# wget https://golang.org/dl/go1.19.3.linux-amd64.tar.gz
-# sudo tar -C /usr/local -xzf go1.19.3.linux-amd64.tar.gz
-# echo "export PATH=/usr/local/go/bin:$PATH" >> .bash_profile
-# source ~/.bash_profile
-# sudo yum install git
-# git clone https://github.com/chihiro-yabuta/cardme.git
-# cd cardme
-# git checkout dev-server
-# make _build && make _client && make _server
-
-# tr -d "\n" < .circleci/cardme.pem | cat
+launch:
+	. sh/launch.sh

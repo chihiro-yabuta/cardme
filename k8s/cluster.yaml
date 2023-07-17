@@ -6,4 +6,3 @@ metadata:
 nodeGroups:
   - name: ng-arm
     instanceType: m6g.medium
-    desiredCapacity: 1

@@ -6,14 +6,8 @@ metadata:
   name: cardme
 spec:
   ports:
-  - name: http
-    port: 80
-    targetPort: 8080
-  - name: https
-    port: 443
+  - port: 80
     targetPort: 8080
   selector:
     app: cardme
-  type: LoadBalancer
-status:
-  loadBalancer: {}
+  type: NodePort

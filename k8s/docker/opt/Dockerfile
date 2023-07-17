@@ -25,3 +25,4 @@ RUN git config --global user.name ${git_name}
 RUN aws configure set aws_access_key_id ${access}
 RUN aws configure set aws_secret_access_key ${secret}
 RUN aws configure set region ap-northeast-1
+RUN eksctl utils write-kubeconfig --cluster=cardme-cluster
