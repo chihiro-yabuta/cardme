@@ -18,6 +18,9 @@ spec:
       volumes:
       - name: vol
         emptyDir: {}
+      - name: persistent-storage
+        persistentVolumeClaim:
+          claimName: ebs-claim
       initContainers:
       - args:
         - /bin/sh
@@ -38,6 +41,8 @@ spec:
         volumeMounts:
           - name: vol
             mountPath: cardme
+          - name: persistent-storage
+            mountPath: cardme-pv
         tty: true
         ports:
         - containerPort: 8080
