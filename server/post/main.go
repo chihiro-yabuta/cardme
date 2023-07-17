@@ -3,14 +3,15 @@ package post
 import (
 	"context"
 	"strings"
-	"math/rand"
+	"encoding/hex"
+	"crypto/sha256"
 	"github.com/gin-gonic/gin"
 	"github.com/redis/go-redis/v9"
 )
 
 func (d *Data) Run(c *gin.Context) {
 	d.getSvg(c)
-	d.getRand()
+	d.getHash()
 	d.redis()
 	c.JSON(200, gin.H{ "key": d.key })
 }
@@ -20,10 +21,9 @@ func (d *Data) getSvg(c *gin.Context) {
 	d.encode(svg)
 }
 
-func (d *Data) getRand() {
-	for i := 0; i < 100; i++ {
-		d.key += string(d.svg[rand.Intn(len(d.svg))])
-	}
+func (d *Data) getHash() {
+	hash := sha256.Sum256([]byte(d.svg))
+	d.key = hex.EncodeToString(hash[:])
 }
 
 func (d *Data) redis() {
