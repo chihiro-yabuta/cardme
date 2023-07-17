@@ -162,7 +162,7 @@ interface line extends child {
 	y2: number;
 }`;
 
-export const user =
+export const userMap =
 `Login
 ID
 NodeID

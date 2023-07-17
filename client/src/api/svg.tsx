@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Buffer } from 'buffer';
 import axios from 'axios';
 
 export const Container = (props: container) => {
@@ -16,35 +17,48 @@ export const Group = (props: group) => {
 }
 
 export const Rect = (props: rect) => {
-    return <rect {...props} />
+  return <rect {...props} />
 }
 
 export const Circle = (props: circle) => {
-    return <circle {...props} />
+  return <circle {...props} />
 }
 
-const getData = async (url: string, setState: Function) => {
-	await axios.get(url).then(api => setState(api.data));
+const getData = async (url: string, setEnc: Function, setIsSvg: Function) => {
+	await axios.get(url, { 'responseType': 'arraybuffer' }).then((api) => {
+    setEnc(Buffer.from(api.data).toString('base64'));
+    setIsSvg(url.slice(url.lastIndexOf('.')+1) === 'svg');
+  });
 };
 
+const svg = (props: { w: number, h: number, enc: string }) => {
+  const { w, h, enc } = props;
+  return <image width={w} height={h} xlinkHref={'data:image/svg+xml;base64,'+enc} />
+}
+
+const pg = (props: { w: number, h: number, enc: string }) => {
+  const { w, h, enc } = props;
+  return <image width={w} height={h} xlinkHref={'data:image/jpg;base64,'+enc} />
+}
+
 export const Img = (props: image) => {
-	const [raw, setRaw] = useState('');
-  getData(props.href, setRaw);
-	return <svg x={props.x} y={props.y} className={props.className}>
-		<g transform={props.scale && `scale(${props.scale} ${props.scale})`}
-			dangerouslySetInnerHTML={
-				{ __html: raw.slice(raw.slice(1).indexOf('<')+1, raw.lastIndexOf('<')) }
-			}
-		/>
-	</svg>
+  const [enc, setEnc] = useState('');
+  const [isSvg, setIsSvg] = useState(false);
+  getData(props.href, setEnc, setIsSvg);
+	const param = { w: props.width, h: props.height, enc: enc };
+	return (
+    <svg x={props.x} y={props.y} className={props.className}>
+      {isSvg ? svg(param) : pg(param)}
+    </svg>
+  )
 }
 
 export const Text = (props: text) => {
-    return <text {...props} />
+  return <text {...props} />
 }
 
 export const Line = (props: line) => {
-    return <line {...props} />
+  return <line {...props} />
 }
 
 interface parent {
@@ -81,7 +95,8 @@ interface circle extends outer {
 
 interface image extends child {
 	href: string;
-	scale?: number;
+	width?: number;
+	height?: number;
 }
 
 interface text extends child {

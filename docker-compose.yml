@@ -1,12 +1,37 @@
 version: '3'
 services:
-  app:
+  opt:
     build:
       context: .
-      dockerfile: 'Dockerfile'
-    container_name: 'cardme'
+      dockerfile: k8s/docker/opt/Dockerfile
+      args:
+        git_email: ${git_email}
+        git_name: ${git_name}
+        access: ${access}
+        secret: ${secret}
+    container_name: cardme
     tty: true
     restart: always
     volumes:
       - ./:/root/cardme
-    working_dir: '/root/cardme'
+    working_dir: /root/cardme
+  client:
+    image: node
+    container_name: cardme_client
+    tty: true
+    restart: always
+    volumes:
+      - ./:/root/cardme
+    working_dir: /root/cardme/client
+  server:
+    build:
+      context: .
+      dockerfile: k8s/docker/server/Dockerfile
+    container_name: cardme_server
+    tty: true
+    restart: always
+    volumes:
+      - ./:/root/cardme
+      - ./server/redis.conf:/usr/local/etc/redis/redis.conf
+    working_dir: /root/cardme/server
+    command: redis-server /usr/local/etc/redis/redis.conf

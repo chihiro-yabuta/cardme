@@ -1,14 +1,17 @@
-package api
+package get
 
 import (
+	"bytes"
 	"strings"
+	"compress/flate"
+	"encoding/base64"
 	"github.com/jinzhu/copier"
 	"github.com/google/go-github/v48/github"
 )
 
 func rm (s string) string { return strings.Split(s, "{")[0] }
-func (u *User) setUser(uResp *github.User) {
-	uc := User {
+func (u *user) setUser(uResp *github.User) {
+	uc := user {
 		Login                   :rm(uResp.GetLogin()),
 		ID                      :uResp.GetID(),
 		NodeID                  :rm(uResp.GetNodeID()),
@@ -58,4 +61,13 @@ func (u *User) setUser(uResp *github.User) {
 		RoleName                :rm(uResp.GetRoleName()),
 	}
 	copier.Copy(&u, &uc)
+}
+
+func (d *Data) decode() {
+	base, _ := base64.StdEncoding.DecodeString(d.svg)
+	var dec bytes.Buffer
+	r := flate.NewReader(bytes.NewReader(base))
+	dec.ReadFrom(r)
+	r.Close()
+	d.svg = dec.String()
 }

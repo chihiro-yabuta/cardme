@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { GiFallingStar } from 'react-icons/gi';
 import { VscDebugStart } from "react-icons/vsc";
-import { Data } from '../../api/data';
 import { store } from '../../redux';
 
 export const Result = () => {
@@ -11,13 +10,19 @@ export const Result = () => {
   const [comp, setComp] = useState(<p className='wait'>waiting...</p>);
 
   const getData = async () => {
+    const hostname = location.hostname === 'localhost'
+      ? `http://localhost:8080`
+      : `https://${location.hostname}`
+    ;
     const name = `?name=${store.getState().name}&`;
-    const url = (query: string) => `https://${location.hostname}/server/${name+query}`;
+    const url = `${hostname}/post`;
     const base = store.getState().base64;
     setComp(<p className='wait'>Loading...</p>);
-    await axios.get<Data>(url(`raw=${base}`)).then((src) => {
-      setApiURL(url(`mode=html&src=${src.data.Svg.EncSvg}`));
-      setComp(<img src={url(`mode=html&src=${src.data.Svg.EncSvg}`)} />);
+    await axios.post<{ key: string }>(url, { svg: base }, {
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    }).then((src) => {
+      setApiURL(`${hostname}/get/${name}key=${src.data.key}`);
+      setComp(<img src={`${hostname}/get/${name}key=${src.data.key}`} />);
     });
   };
 

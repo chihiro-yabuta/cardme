@@ -8,8 +8,8 @@ import { javascript } from '@codemirror/lang-javascript';
 import { vscodeDark } from '@uiw/codemirror-theme-vscode';
 import { css as langCSS } from '@codemirror/lang-css';
 import { slice } from '../../redux';
-import { Data } from '../../api/data';
-import { defaultJSX, defaultCSS, options, user } from '../example';
+import { User } from '../../api/data';
+import { defaultJSX, defaultCSS, options, userMap } from '../example';
 import { SVG } from './svg';
 
 export const Playground = () => {
@@ -17,19 +17,21 @@ export const Playground = () => {
   const [jsx, setJSX] = useState(defaultJSX);
   const [css, setCSS] = useState(defaultCSS);
   const [idx, setIdx] = useState(0);
-  const [data, setData]: [any, Function] = useState({});
+  const [user, setUser]: [User, Function] = useState(null);
 
-  const url = name !== ''
-  ? `https://${location.hostname}/server/?name=${name}`
-  : `https://${location.hostname}/server`;
-  const getData = async () => await axios.get<Data>(url).then((api) => {
-    setData(api.data);
+  const hostname = location.hostname === 'localhost'
+    ? `http://localhost:8080`
+    : `https://${location.hostname}`
+  ;
+  const url = name !== '' ? `${hostname}/api/?name=${name}` : `${hostname}/api`;
+  const getData = async () => await axios.get<User>(url).then((api) => {
+    setUser(api.data);
   });
 
   const dispatch = useDispatch();
-  useEffect(() => { dispatch(slice.actions.sendName(name)); getData(); }, [name]);
+  useEffect(() => { dispatch(slice.actions.sendName(name)); getData(); }, [idx]);
   const code = [
-    <SVG data={data} css={css} jsx={jsx} />,
+    <SVG user={user} css={css} jsx={jsx} />,
     <CodeMirror
       value={jsx} width='800' theme={vscodeDark} extensions={[javascript({ jsx: true })]}
       onChange={ (value) => setJSX(value) } />,
@@ -40,7 +42,7 @@ export const Playground = () => {
       value={options} width='800' theme={vscodeDark}
       extensions={[javascript({ jsx: true })]} readOnly />,
     <CodeMirror
-      value={user} width='800' theme={vscodeDark}
+      value={userMap} width='800' theme={vscodeDark}
       extensions={[javascript()]} readOnly />,
   ];
   const btn = ['svg', 'jsx', 'css', 'opt', 'usr'].map((s, i) => (

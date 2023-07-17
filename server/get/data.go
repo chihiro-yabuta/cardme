@@ -1,10 +1,16 @@
-package api
+package get
 
 import (
 	"github.com/google/go-github/v48/github"
 )
 
-type User struct {
+type Data struct {
+	user user
+	key  string
+	svg  string
+}
+
+type user struct {
 	Login                   string
 	ID                      int64
 	NodeID                  string
