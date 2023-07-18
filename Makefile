@@ -26,3 +26,4 @@ test:
 launch:
 	. sh/launch.sh
 	. sh/pv.sh
+	kubectl apply -k k8s
