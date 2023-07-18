@@ -17,12 +17,12 @@ latest/download/eksctl_linux_amd64.tar.gz"
 RUN tar -xzf eksctl_linux_amd64.tar.gz && rm eksctl_linux_amd64.tar.gz
 RUN sudo mv eksctl /usr/local/bin
 
-ARG git_email git_name access secret
+ARG git_email git_name cmd1 cmd2 cmd3 cmd4
 
 RUN git config --global user.email ${git_email}
 RUN git config --global user.name ${git_name}
 
-RUN aws configure set aws_access_key_id ${access}
-RUN aws configure set aws_secret_access_key ${secret}
-RUN aws configure set region ap-northeast-1
-RUN eksctl utils write-kubeconfig --cluster=cardme-cluster
+RUN ${cmd1}
+RUN ${cmd2}
+RUN ${cmd3}
+RUN ${cmd4}
