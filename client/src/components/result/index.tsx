@@ -12,7 +12,7 @@ export const Result = () => {
   const getData = async () => {
     const hostname = location.hostname === 'localhost'
       ? `http://localhost:8080`
-      : `https://${location.hostname}`
+      : `http://${location.hostname}`
     ;
     const name = `?name=${store.getState().name}&`;
     const url = `${hostname}/post`;
@@ -44,7 +44,7 @@ export const Result = () => {
           {comp}
         </div>
         <div className='urlarea'>
-          <p className='url'>{`<a href="https://4card.me" target="_blank"><img src="${apiURL}" /></a>`}</p>
+          <p className='url'>{`<a href="http://${location.hostname}" target="_blank"><img src="${apiURL}" /></a>`}</p>
         </div>
       </div>
     </div>

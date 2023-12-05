@@ -4,7 +4,7 @@ import React from 'react';
 export const Header = () => {
   const hostname = location.hostname === 'localhost'
     ? `http://localhost:8080`
-    : `https://${location.hostname}`
+    : `http://${location.hostname}`
   ;
   return (
   <div className='center header'>

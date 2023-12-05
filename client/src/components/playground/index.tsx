@@ -21,7 +21,7 @@ export const Playground = () => {
 
   const hostname = location.hostname === 'localhost'
     ? `http://localhost:8080`
-    : `https://${location.hostname}`
+    : `http://${location.hostname}`
   ;
   const url = name !== '' ? `${hostname}/api/?name=${name}` : `${hostname}/api`;
   const getData = async () => await axios.get<User>(url).then((api) => {
