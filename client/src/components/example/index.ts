@@ -207,3 +207,93 @@ SubscriptionsURL
 TextMatches
 Permissions
 RoleName`;
+
+// header:
+
+// <Container width={720} height={200}>
+//   <Group className='group'>
+//     <Text x={10} y={85} className='text c'>
+//       C
+//     </Text>
+//     <Text x={90} y={85} className='text a'>
+//       A
+//     </Text>
+//     <Text x={180} y={85} className='text r'>
+//       R
+//     </Text>
+//     <Text x={260} y={85} className='text d'>
+//       D
+//     </Text>
+//     <Text x={340} y={85} className='text m'>
+//       M
+//     </Text>
+//     <Text x={440} y={85} className='text e'>
+//       E
+//     </Text>
+//   </Group>
+// </Container>
+
+// @keyframes topin {
+//   from {
+//     transform: translate(0%, -50%);
+//     opacity: 0;
+//   } to {
+//     transform: translate(0%, 0%);
+//     opacity: 1;
+//   }
+// }
+// @keyframes buttomin {
+//   0% {
+//     transform: translate(0%, 50%);
+//     opacity: 0;
+//   }  {
+//     transform: translate(0%, 0%);
+//     opacity: 1;
+//   }
+// }
+// @keyframes rightin {
+//   from {
+//     transform: translate(20%, 0%);
+//     opacity: 0;
+//   } to {
+//     transform: translate(0%, 0%);
+//     opacity: 1;
+//   }
+// }
+// @keyframes hovering {
+//   from {
+//     transform: scale(98%);
+//   } to {
+//     transform: scale(102%);
+//   }
+// }
+
+// .group {
+//   transform-origin: 50% 50%;
+//   animation: hovering 1.5s both 3s infinite;
+//   animation-direction: alternate;
+// }
+
+// .text {
+//   font-family: "Comic Sans MS", sans-serif;
+//   font-size: 100px;
+// }
+
+// .c {
+//   animation: topin 1.2s both 0.2s;
+// }
+// .a {
+//   animation: buttomin 1.2s both 0.5s;
+// }
+// .r {
+//   animation: topin 1.2s both 1s;
+// }
+// .d {
+//   animation: buttomin 1.2s both 1.5s;
+// }
+// .m {
+//   animation: topin 1.2s both 2s;
+// }
+// .e {
+//   animation: buttomin 1.2s both 2.5s;
+// }
