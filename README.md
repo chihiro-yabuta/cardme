@@ -1,4 +1,4 @@
-<img src="https://4card.me/get/?key=49664e374f8fae7afbe31f745ce06bdd24f9823a5b198168858fa46314a2cc91" />
+<img src="http://52.68.69.148/get/?key=31b6d3344709358c22531733429114ab7952e89cf0b4987d35280265dd8b2613" />
 
 # For Developer
 
