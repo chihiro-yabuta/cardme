@@ -10,19 +10,15 @@ export const Result = () => {
   const [comp, setComp] = useState(<p className='wait'>waiting...</p>);
 
   const getData = async () => {
-    const hostname = location.hostname === 'localhost'
-      ? `http://localhost:8080`
-      : `http://${location.hostname}`
-    ;
     const name = `?name=${store.getState().name}&`;
-    const url = `${hostname}/post`;
+    const url = `${location.href}/post`;
     const base = store.getState().base64;
     setComp(<p className='wait'>Loading...</p>);
     await axios.post<{ key: string }>(url, { svg: base }, {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     }).then((src) => {
-      setApiURL(`${hostname}/get/${name}key=${src.data.key}`);
-      setComp(<img src={`${hostname}/get/${name}key=${src.data.key}`} />);
+      setApiURL(`${location.href}/get/${name}key=${src.data.key}`);
+      setComp(<img src={`${location.href}/get/${name}key=${src.data.key}`} />);
     });
   };
 
@@ -44,7 +40,7 @@ export const Result = () => {
           {comp}
         </div>
         <div className='urlarea'>
-          <p className='url'>{`<a href="http://${location.hostname}" target="_blank"><img src="${apiURL}" /></a>`}</p>
+          <p className='url'>{`<a href="${location.href}" target="_blank"><img src="${apiURL}" /></a>`}</p>
         </div>
       </div>
     </div>

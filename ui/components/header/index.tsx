@@ -2,13 +2,9 @@ import '../../index.css';
 import React from 'react';
 
 export const Header = () => {
-  const hostname = location.hostname === 'localhost'
-    ? `http://localhost:8080`
-    : `http://${location.hostname}`
-  ;
   return (
   <div className='center header'>
-    <img src={`${hostname}/get/?key=31b6d3344709358c22531733429114ab7952e89cf0b4987d35280265dd8b2613`} />
+    <img src={`${location.href}/get/?key=31b6d3344709358c22531733429114ab7952e89cf0b4987d35280265dd8b2613`} />
     <div>
       <p className='title'>Write Code. Express Yourself.</p>
       <p className='sentence'>
