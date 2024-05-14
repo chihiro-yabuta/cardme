@@ -1,39 +1,14 @@
-version: '3'
 services:
-  opt:
+  cardme:
     build:
       context: .
-      dockerfile: k8s/docker/opt/Dockerfile
+      dockerfile: Dockerfile
       args:
         git_email: ${git_email}
         git_name: ${git_name}
-        cmd1: ${cmd1}
-        cmd2: ${cmd2}
-        cmd3: ${cmd3}
-        cmd4: ${cmd4}
     container_name: cardme
+    volumes:
+      - ./:/cardme
+    working_dir: /cardme
     tty: true
     restart: always
-    volumes:
-      - ./:/root/cardme
-    working_dir: /root/cardme
-  client:
-    image: node
-    container_name: cardme_client
-    tty: true
-    restart: always
-    volumes:
-      - ./:/root/cardme
-    working_dir: /root/cardme/client
-  server:
-    build:
-      context: .
-      dockerfile: k8s/docker/server/Dockerfile
-    container_name: cardme_server
-    tty: true
-    restart: always
-    volumes:
-      - ./:/root/cardme
-      - ./server/redis.conf:/usr/local/etc/redis/redis.conf
-    working_dir: /root/cardme/server
-    command: redis-server /usr/local/etc/redis/redis.conf
