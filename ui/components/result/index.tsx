@@ -11,14 +11,14 @@ export const Result = () => {
 
   const getData = async () => {
     const name = `?name=${store.getState().name}&`;
-    const url = `${location.href}/post`;
+    const url = `${location.href}post`;
     const base = store.getState().base64;
     setComp(<p className='wait'>Loading...</p>);
     await axios.post<{ key: string }>(url, { svg: base }, {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     }).then((src) => {
-      setApiURL(`${location.href}/get/${name}key=${src.data.key}`);
-      setComp(<img src={`${location.href}/get/${name}key=${src.data.key}`} />);
+      setApiURL(`${location.href}get/${name}key=${src.data.key}`);
+      setComp(<img src={`${location.href}get/${name}key=${src.data.key}`} />);
     });
   };
 
