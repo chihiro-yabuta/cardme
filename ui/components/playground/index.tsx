@@ -1,13 +1,13 @@
 import '../../index.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { IoRocket } from 'react-icons/io5';
+import { IoRocket, IoReloadCircle } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { vscodeDark } from '@uiw/codemirror-theme-vscode';
 import { css as langCSS } from '@codemirror/lang-css';
-import { slice } from '../../redux';
+import { slice, store } from '../../redux';
 import { User } from '../../api/data';
 import { defaultJSX, defaultCSS, options, userMap } from '../example';
 import { SVG } from './svg';
@@ -17,7 +17,8 @@ export const Playground = () => {
   const [jsx, setJSX] = useState(defaultJSX);
   const [css, setCSS] = useState(defaultCSS);
   const [idx, setIdx] = useState(0);
-  const [user, setUser]: [User, Function] = useState(null);
+  const [updt, setUpdt] = useState(true);
+  const [user, setUser] = useState(null as User);
 
   const url =`${location.href}api` + (name && `?name=${name}`);
   const getData = async () => await axios.get<User>(url).then((api) => {
@@ -25,7 +26,13 @@ export const Playground = () => {
   });
 
   const dispatch = useDispatch();
-  useEffect(() => { dispatch(slice.actions.sendName(name)); getData(); }, [idx]);
+  useEffect(() => {
+    if (name !== store.getState().name) {
+      dispatch(slice.actions.sendName(name));
+      getData();
+    }
+  }, [updt]);
+
   const code = [
     <SVG user={user} css={css} jsx={jsx} />,
     <CodeMirror
@@ -41,6 +48,7 @@ export const Playground = () => {
       value={userMap} width='800' theme={vscodeDark}
       extensions={[javascript()]} readOnly />,
   ];
+
   const btn = ['svg', 'jsx', 'css', 'opt', 'usr'].map((s, i) => (
     <button
       className='btnelement'
@@ -63,6 +71,12 @@ export const Playground = () => {
             value={name}
             onChange={(e) => {
               setName(e.target.value);
+            }}
+          />
+          <IoReloadCircle
+            className='reload'
+            onClick={() => {
+              setUpdt(!updt);
             }}
           />
         </div>

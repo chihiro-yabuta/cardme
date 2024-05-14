@@ -9,6 +9,8 @@ services:
     container_name: cardme
     volumes:
       - ./:/cardme
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
     working_dir: /cardme
     tty: true
     restart: always
+    command: redis-server /usr/local/etc/redis/redis.conf

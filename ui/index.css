@@ -43,12 +43,23 @@
 
 .center .optarea .namearea input {
   border: none;
-  width: 400px;
+  width: 350px;
   text-align: right;
   background-color: transparent;
   font-weight: bold;
   font-size: 100%;
   color: rgb(150, 0, 150);
+}
+
+.center .optarea .namearea .reload {
+  vertical-align: bottom;
+  margin-left: 5px;
+  font-size: 40px;
+  color: rgb(0, 200, 0);
+}
+
+.center .optarea .namearea .reload:hover {
+  color: rgb(0, 255, 0);
 }
 
 .center .optarea .namearea input:focus {

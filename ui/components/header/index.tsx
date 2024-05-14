@@ -4,7 +4,7 @@ import React from 'react';
 export const Header = () => {
   return (
   <div className='center header'>
-    <img src={`${location.href}get/?key=31b6d3344709358c22531733429114ab7952e89cf0b4987d35280265dd8b2613`} />
+    <img src={`${location.href}get/?key=af741ca0c7f4daeac0f2df147a305fc8585282ef389d362cd961529360d6f30e`} />
     <div>
       <p className='title'>Write Code. Express Yourself.</p>
       <p className='sentence'>

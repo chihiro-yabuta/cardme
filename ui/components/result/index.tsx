@@ -10,15 +10,14 @@ export const Result = () => {
   const [comp, setComp] = useState(<p className='wait'>waiting...</p>);
 
   const getData = async () => {
-    const name = `?name=${store.getState().name}&`;
     const url = `${location.href}post`;
     const base = store.getState().base64;
     setComp(<p className='wait'>Loading...</p>);
     await axios.post<{ key: string }>(url, { svg: base }, {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     }).then((src) => {
-      setApiURL(`${location.href}get/${name}key=${src.data.key}`);
-      setComp(<img src={`${location.href}get/${name}key=${src.data.key}`} />);
+      setApiURL(`${location.href}get/?key=${src.data.key}`);
+      setComp(<img src={`${location.href}get/?key=${src.data.key}`} />);
     });
   };
 
