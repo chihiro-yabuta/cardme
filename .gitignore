@@ -3,4 +3,6 @@
 node_modules
 package-lock.json
 go.sum
-public/js/index.js.LICENSE.txt
+public/js
+api/public
+.vercel

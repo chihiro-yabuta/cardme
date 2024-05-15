@@ -20,7 +20,7 @@ export const Playground = () => {
   const [updt, setUpdt] = useState(true);
   const [user, setUser] = useState(null as User);
 
-  const url =`${location.href}api` + (name && `?name=${name}`);
+  const url =`${location.href}user` + (name && `?name=${name}`);
   const getData = async () => await axios.get<User>(url).then((api) => {
     setUser(api.data);
   });
