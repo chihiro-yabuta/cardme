@@ -1,3 +1,5 @@
+include .env
+
 default:
 	sh sh/env.sh
 	docker compose up -d
@@ -7,9 +9,11 @@ admin:
 i:
 	npm install && go mod tidy && make b && make r
 b:
-	rm -f -R api/public && npm run build && cp -r public api
+	npm run build
 r:
-	go run api/main.go
+	go run main.go
+c:
+	redis-cli --tls -u redis://default:$(pswd)@$(host)
 
 d:
 	docker compose down

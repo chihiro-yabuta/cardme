@@ -8,9 +8,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
 	"github.com/redis/go-redis/v9"
-	"server/api/user"
-	"server/api/get"
-	"server/api/post"
+	"server/user"
+	"server/get"
+	"server/post"
 )
 
 func main() {
