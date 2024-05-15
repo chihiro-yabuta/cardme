@@ -54,12 +54,12 @@
 .center .optarea .namearea .reload {
   vertical-align: bottom;
   margin-left: 5px;
-  font-size: 40px;
-  color: rgb(0, 200, 0);
+  font-size: 30px;
+  color: white;
 }
 
 .center .optarea .namearea .reload:hover {
-  color: rgb(0, 255, 0);
+  color: rgb(0, 225, 0);
 }
 
 .center .optarea .namearea input:focus {
@@ -121,9 +121,19 @@
   text-align: center;
   width: 800px;
   word-break: break-all;
+  margin: 25px 0 50px 0;
+}
+
+.center .resultarea .urlarea .clicktitle {
+  font-size: 20px;
+  margin-bottom: 5px;
 }
 
 .center .resultarea .urlarea .url {
   font-size: 15px;
-  margin: 25px 0;
+  color: rgba(0,0,0,0.5);
+}
+
+.center .resultarea .urlarea .url:hover {
+  color: black;
 }

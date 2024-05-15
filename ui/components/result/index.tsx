@@ -2,24 +2,23 @@ import '../../index.css';
 import React, { useState } from 'react';
 import axios from 'axios';
 import { GiFallingStar } from 'react-icons/gi';
-import { VscDebugStart } from "react-icons/vsc";
+import { VscDebugStart } from 'react-icons/vsc';
 import { store } from '../../redux';
 
 export const Result = () => {
   const [apiURL, setApiURL] = useState('waiting...');
-  const [comp, setComp] = useState(<p className='wait'>waiting...</p>);
+  const [title, setTitle] = useState('click below!');
 
   const getData = async () => {
     const url = `${location.href}post`;
     const base = store.getState().base64;
-    setComp(<p className='wait'>Loading...</p>);
     await axios.post<{ key: string }>(url, { svg: base }, {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     }).then((src) => {
       setApiURL(`${location.href}get/?key=${src.data.key}`);
-      setComp(<img src={`${location.href}get/?key=${src.data.key}`} />);
     });
   };
+  const el = `<a href="${location.href}" target="_blank"><img src="${apiURL}" /></a>`;
 
   return (
     <div className='center'>
@@ -36,10 +35,21 @@ export const Result = () => {
       </div>
       <div className='resultarea'>
         <div className='imgarea'>
-          {comp}
+          {apiURL == 'waiting...' ? <p className='wait'>waiting...</p> : <img src={apiURL} />}
         </div>
         <div className='urlarea'>
-          <p className='url'>{`<a href="${location.href}" target="_blank"><img src="${apiURL}" /></a>`}</p>
+          <p className='clicktitle'>{title}</p>
+          <p
+            className='url'
+            onClick={() => {
+              setTitle('copied!');
+              navigator.clipboard.writeText(el);
+              setTimeout(() => {
+                setTitle('click below!');
+              }, 5 * 1000);
+            }}
+            children={el}
+          />
         </div>
       </div>
     </div>

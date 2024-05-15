@@ -1,5 +1,5 @@
 export const defaultJSX =
-`<Container width={720} height={200}>
+`<Container width={720} height={100}>
   <Group className='group'>
     <Text x={10} y={85} className='text c'>
       C

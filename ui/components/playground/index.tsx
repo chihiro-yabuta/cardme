@@ -1,7 +1,7 @@
 import '../../index.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { IoRocket, IoReloadCircle } from 'react-icons/io5';
+import { IoRocket, IoReload } from 'react-icons/io5';
 import { useDispatch } from 'react-redux';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
@@ -73,7 +73,7 @@ export const Playground = () => {
               setName(e.target.value);
             }}
           />
-          <IoReloadCircle
+          <IoReload
             className='reload'
             onClick={() => {
               setUpdt(!updt);
