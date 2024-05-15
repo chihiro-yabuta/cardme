@@ -1,11 +1,9 @@
 default:
 	sh sh/env.sh
 	docker compose up -d
-	rm .env
 admin:
 	sh sh/env.sh admin
 	docker compose up -d
-	rm .env
 i:
 	npm install && go mod tidy && make b && make r
 b:
@@ -16,6 +14,6 @@ r:
 d:
 	docker compose down
 	docker system prune -a
-	rm -f -R node_modules package-lock.json go.sum .env
+	rm -f -R node_modules package-lock.json go.sum
 p-%:
 	sh sh/push.sh ${@:p-%=%}

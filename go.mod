@@ -7,6 +7,7 @@ require (
 	github.com/gin-gonic/gin v1.9.1
 	github.com/google/go-github/v48 v48.2.0
 	github.com/jinzhu/copier v0.3.5
+	github.com/joho/godotenv v1.5.1
 	github.com/redis/go-redis/v9 v9.0.5
 )
 
