@@ -10,12 +10,10 @@ export const Result = () => {
   const [title, setTitle] = useState('click below!');
 
   const getData = async () => {
-    const url = `${location.href}post`;
-    const base = store.getState().base64;
-    await axios.post<{ key: string }>(url, { svg: base }, {
+    await axios.post<{ key: string }>(`${location.href}post`, { svg: store.getState().base64 }, {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     }).then((src) => {
-      setApiURL(`${location.href}get/?key=${src.data.key}`);
+      setApiURL(`${location.href}get/?name=${store.getState().name}&key=${src.data.key}`);
     });
   };
   const el = `<a href="${location.href}" target="_blank"><img src="${apiURL}" /></a>`;
