@@ -12,10 +12,10 @@ func main() {
 	route := gin.Default()
 	route.Use(cors.Default())
 
-	route.Static("/assets", "public/assets")
-	route.Static("/css", "public/css")
-	route.Static("/js", "public/js")
-	route.LoadHTMLGlob("public/index.html")
+	route.StaticFile("/cardme.png", "public/cardme.png")
+	route.StaticFile("/index.css", "public/index.css")
+	route.StaticFile("/index.js", "public/index.js")
+	route.LoadHTMLFiles("public/index.html")
 	route.GET("/", func(c *gin.Context) { c.HTML(200, "index.html", nil) })
 
 	a := new(user.User)

@@ -7,9 +7,9 @@ admin:
 	docker compose up -d
 	rm .env
 i:
-	npm install && go mod tidy
+	npm install && go mod tidy && make b && make r
 b:
-	npm run build && cp -r public api
+	rm -f -R api/public && npm run build && cp -r public api
 r:
 	go run api/main.go
 
