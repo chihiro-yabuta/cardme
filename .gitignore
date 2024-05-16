@@ -1,8 +1,6 @@
 .DS_Store
 .env
-*.csv
-iam_policy.json
-v2_4_7_full.yaml
-v2_4_7_full.yaml.bak
-v2_4_7_ingclass.yaml
-trust-policy.json
+node_modules
+package-lock.json
+go.sum
+api/public
