@@ -1,29 +1,23 @@
-.PHONY: c, s, d, r, test
+include .env
 
 default:
-	. sh/env.sh
+	sh sh/env.sh
 	docker compose up -d
-	rm .env
+admin:
+	sh sh/env.sh admin
+	docker compose up -d
+i:
+	npm install && go mod tidy && make b && make r
+b:
+	npm run build
+r:
+	go run main.go
 c:
-	cd client && npm install && npm run build
-	cp -r client/public server
-s:
-	redis-server server/redis.conf &
-	cd server && go mod tidy && go run main.go
+	redis-cli --tls -u redis://default:$(pswd)@$(host)
 
 d:
 	docker compose down
 	docker system prune -a
-r:
-	cd server \
-		&& rm -f -R go.sum public
-	cd client \
-		&& rm -f -R node_modules package-lock.json \
-		&& cd public \
-			&& rm -f -R assets/index.js assets/index.js.LICENSE.txt
-test:
-	circleci config validate
-launch:
-	. sh/launch.sh
-	. sh/pv.sh
-	kubectl apply -k k8s
+	rm -f -R node_modules package-lock.json go.sum
+p-%:
+	sh sh/push.sh ${@:p-%=%}
