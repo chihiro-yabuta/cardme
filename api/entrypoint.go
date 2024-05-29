@@ -1,8 +1,9 @@
-package main
+package api
 
 import (
 	"os"
 	"context"
+	"net/http"
 	"crypto/tls"
 	"github.com/joho/godotenv"
 	"github.com/gin-gonic/gin"
@@ -13,7 +14,9 @@ import (
 	"github.com/chihiro-yabuta/cardme/post"
 )
 
-func main() {
+var route *gin.Engine
+
+func init() {
 	godotenv.Load(".env")
 	ctx := context.Background()
 	rdb := redis.NewClient(&redis.Options{
@@ -24,7 +27,7 @@ func main() {
 		},
 	})
 
-	route := gin.Default()
+	route = gin.Default()
 	route.Use(cors.Default())
 
 	route.StaticFile("/cardme.png", "public/cardme.png")
@@ -40,5 +43,8 @@ func main() {
 	route.GET("/user", a.Run)
 	route.POST("/post", p.Run)
 	route.GET("/get", g.Run)
-	route.Run()
+}
+
+func Handler(w http.ResponseWriter, r *http.Request) {
+	route.ServeHTTP(w, r)
 }
