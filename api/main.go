@@ -1,4 +1,4 @@
-package api
+package handler
 
 import (
 	"os"
@@ -30,17 +30,11 @@ func init() {
 	route = gin.Default()
 	route.Use(cors.Default())
 
-	route.StaticFile("/cardme.png", "public/cardme.png")
-	route.StaticFile("/index.css", "public/index.css")
-	route.StaticFile("/index.js", "public/index.js")
-	route.LoadHTMLFiles("public/index.html")
-	route.GET("/", func(c *gin.Context) { c.HTML(200, "index.html", nil) })
-
-	a := new(user.User)
+	u := new(user.User)
 	p := post.Data{ Ctx: ctx, Rdb: rdb }
 	g := get.Data{ Ctx: ctx, Rdb: rdb }
 
-	route.GET("/user", a.Run)
+	route.GET("/user", u.Run)
 	route.POST("/post", p.Run)
 	route.GET("/get", g.Run)
 }

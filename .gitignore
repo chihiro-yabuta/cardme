@@ -3,5 +3,5 @@
 node_modules
 package-lock.json
 go.sum
-public
+public/*.js
 .vercel
