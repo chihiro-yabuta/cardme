@@ -2,7 +2,7 @@ services:
   cardme:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: sh/Dockerfile
       args:
         git_email: ${git_email}
         git_name: ${git_name}
@@ -13,4 +13,6 @@ services:
     working_dir: /cardme
     tty: true
     restart: always
+    ports:
+      - 8080:8080
     command: redis-server /usr/local/etc/redis/redis.conf
