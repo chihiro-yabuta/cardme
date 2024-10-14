@@ -18,6 +18,6 @@ c:
 d:
 	docker compose down
 	docker system prune -a
-	rm -f -R node_modules package-lock.json go.sum
+	rm -f -R node_modules package-lock.json go.sum public/*.js
 p-%:
 	sh sh/push.sh ${@:p-%=%}
