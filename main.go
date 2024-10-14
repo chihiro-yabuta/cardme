@@ -8,9 +8,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
 	"github.com/redis/go-redis/v9"
-	"server/user"
-	"server/get"
-	"server/post"
+	"github.com/chihiro-yabuta/cardme/user"
+	"github.com/chihiro-yabuta/cardme/get"
+	"github.com/chihiro-yabuta/cardme/post"
 )
 
 func main() {
@@ -33,11 +33,11 @@ func main() {
 	route.LoadHTMLFiles("public/index.html")
 	route.GET("/", func(c *gin.Context) { c.HTML(200, "index.html", nil) })
 
-	a := new(user.User)
+	u := new(user.User)
 	p := post.Data{ Ctx: ctx, Rdb: rdb }
 	g := get.Data{ Ctx: ctx, Rdb: rdb }
 
-	route.GET("/user", a.Run)
+	route.GET("/user", u.Run)
 	route.POST("/post", p.Run)
 	route.GET("/get", g.Run)
 	route.Run()
