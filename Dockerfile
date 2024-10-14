@@ -1,17 +1,13 @@
-FROM node
-
-COPY --from=golang /usr/local/go /usr/local/go
-ENV PATH $PATH:/usr/local/go/bin/
-
+FROM node AS js
 WORKDIR /cardme
 COPY . .
+RUN npm i && npm run build
+
+FROM golang
+WORKDIR /cardme
+COPY . .
+COPY --from=js /cardme/public public
 RUN go mod tidy
-RUN npm i
-RUN npm run build
 
 EXPOSE 8080
-
-ENV PORT 8080
-ENV HOSTNAME "0.0.0.0"
-
-CMD go run main.go
+CMD ["go", "run", "main.go"]
