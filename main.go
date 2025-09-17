@@ -15,9 +15,8 @@ import (
 func main() {
 	godotenv.Load(".env")
 	ctx := context.Background()
-	rdb := redis.NewClient(&redis.Options{
-		Addr: os.Getenv("host"),
-	})
+	opt, _ := redis.ParseURL(os.Getenv("host"))
+	rdb := redis.NewClient(opt)
 
 	route := gin.Default()
 	route.Use(cors.Default())
