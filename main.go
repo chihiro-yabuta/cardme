@@ -3,7 +3,6 @@ package main
 import (
 	"os"
 	"context"
-	"crypto/tls"
 	"github.com/joho/godotenv"
 	"github.com/gin-gonic/gin"
 	"github.com/gin-contrib/cors"
@@ -18,10 +17,6 @@ func main() {
 	ctx := context.Background()
 	rdb := redis.NewClient(&redis.Options{
 		Addr: os.Getenv("host"),
-		Password: os.Getenv("pswd"),
-		TLSConfig: &tls.Config{
-			MinVersion: tls.VersionTLS12,
-		},
 	})
 
 	route := gin.Default()
