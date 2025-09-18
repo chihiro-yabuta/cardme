@@ -28,3 +28,7 @@ p-%:
 # sudo systemctl enable --now nginx
 # cp nginx.conf /etc/nginx/conf.d/app.conf
 # sudo nginx -t && sudo systemctl reload nginx
+# sudo dnf -y install epel-release
+# sudo dnf -y install certbot
+# sudo dnf -y install python3-certbot-nginx
+# sudo certbot --nginx -d cardme.jp --agree-tos -m ja.chihiro.yabuta@gmail.com --redirect

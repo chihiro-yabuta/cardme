@@ -1,4 +1,4 @@
-<img src="https://cardme-591080465365.asia-northeast1.run.app/get/?name=Google&key=148d624ed505ff01a77c07b5064dd7441df6656562e92989a8e282e332b35cf7" />
+<img src="https://cardme.jp/get/?name=Google&key=148d624ed505ff01a77c07b5064dd7441df6656562e92989a8e282e332b35cf7" />
 
 # For Developer
 
